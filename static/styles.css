@@ -1,2 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,700');
 
+
+.Graph {
+    width: 720px;
+    height: 500px;
+    border: 1px solid red;
+}

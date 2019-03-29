@@ -1,1 +1,3 @@
-console.log("hi")
+import {oldBoys} from "./charts/oldBoys"
+
+oldBoys()
