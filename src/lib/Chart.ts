@@ -9,6 +9,7 @@ import {ChartDefinition,
     CharacterDefinition, 
     AnnotationDefinition,
     Named} from "./Definitions"
+import {buildMapWithName, throwIfNotSet, valOrDefault} from "./Helpers"
 
 
 interface Scale extends Function {
@@ -94,7 +95,7 @@ export abstract class Chart implements Drawable {
 
     buildAxes(axes:AxisDefinition[]):Map<string, Axis> {
         let that = this
-        return this.buildMapWithName(axes, this.buildAxis.bind(this))
+        return buildMapWithName(axes, this.buildAxis.bind(this))
     }
 
     axisStage(name:string):d3.Selection<any, any, any, any> {
@@ -113,14 +114,13 @@ export abstract class Chart implements Drawable {
     abstract buildAxis(axis:AxisDefinition):Axis
 
     buildCharacters(chars:CharacterDefinition[]) {
-        console.log("Data1", this.data)
-        return this.buildMapWithName(chars, this.buildCharacter.bind(this)) 
+        return buildMapWithName(chars, this.buildCharacter.bind(this)) 
     }
 
     abstract buildCharacter(charaDef:CharacterDefinition):Character
 
     buildAnnotations(annos:AnnotationDefinition[]) {
-        return this.buildMapWithName(annos, this.buildAnnotation)
+        return buildMapWithName(annos, this.buildAnnotation)
     }
 
     buildAnnotation(annoDef:AnnotationDefinition) {
@@ -129,26 +129,7 @@ export abstract class Chart implements Drawable {
 
 
     // ========= Helper methods ==========
-    buildMapWithName(list:Named[], buildMethod:Function):Map<string, any> {
-        let m = new Map()
-        list.forEach( (item:Named) => {
-            m.set(item.name, buildMethod(item)) 
-        })
-        return m
-    }
-
-    throwIfNotSet<T>(value:T):T {
-        if(value === null) {
-            throw new Error("A value is null and shouldn't be null") 
-        }
-        return value
-    }
-
-    valOrDefault<T>(value:T, deflt:T):T {
-        if(value === null) {return deflt} 
-        else {return value}
-    }
-
+  
 
 
     draw() {
@@ -196,7 +177,7 @@ export abstract class Chart implements Drawable {
     set stage(stage:d3.Selection<any, any, any, any>) {this._stage = stage }
 
 
-    set data(d:any) { this._data = this.throwIfNotSet(d) }
+    set data(d:any) { this._data = throwIfNotSet(d) }
     get data() {return this._data}
     set axes(axes:Map<string, Axis>) {this._axes = axes}
     get axes() {return this._axes}

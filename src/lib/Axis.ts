@@ -2,6 +2,7 @@ import * as d3 from "d3"
 import {AxisDefinition, AnnotationDefinition, Named} from "./Definitions"
 import {Annotation} from "./Annotation"
 import {Design} from "./Design"
+import {buildMapWithName, valOrDefault, throwIfNotSet} from "./Helpers"
 
 
 export abstract class Axis {
@@ -25,15 +26,15 @@ export abstract class Axis {
     }
 
     buildAxis(axis:AxisDefinition) {
-        this.name = this.valOrDefault(axis.name, "This axis is unnamed")
+        this.name = valOrDefault(axis.name, "This axis is unnamed")
         this.scale = this.defineScale(axis.domain)
-        this.annotations = this.buildAnnotations(this.valOrDefault(axis.annotations, []))
+        this.annotations = this.buildAnnotations(valOrDefault(axis.annotations, []))
     }
 
 
     buildAnnotations(annotations:AnnotationDefinition[]){
         console.log(annotations)
-        return this.buildMapWithName(annotations, this.buildAnnotation) 
+        return buildMapWithName(annotations, this.buildAnnotation) 
     }
 
     buildAnnotation(anno:AnnotationDefinition) {
@@ -43,26 +44,6 @@ export abstract class Axis {
     abstract defineScale(domain:any):any
     abstract draw():void
 
-    // ========= Helper methods ==========
-    buildMapWithName(list:Named[], buildMethod:Function):Map<string, any> {
-        let m = new Map()
-        list.forEach( (item:Named) => {
-            m.set(item.name, buildMethod(item)) 
-        })
-        return m
-    }
-
-    throwIfNotSet<T>(value:T, msg:string):T {
-        if(value === null || value === undefined) {
-            throw new Error(msg) 
-        }
-        return value
-    }
-
-    valOrDefault<T>(value:T, deflt:T):T {
-        if(value === null || value == undefined) {return deflt} 
-        else {return value}
-    }
 
     set annotations(annos:Map<string, Annotation>) {this._annotations = annos}
     set scale(scale:d3.AxisScale<any>) {this._scale = scale}
@@ -72,4 +53,3 @@ export abstract class Axis {
     set stage(stage:d3.Selection<any, any, any,any>) {this._stage = stage}
     get stage() {return this._stage}
 }
-

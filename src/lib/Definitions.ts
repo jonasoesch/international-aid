@@ -2,8 +2,6 @@ export interface Named {
     name:string
 }
 
-
-
 export interface ChartDefinition extends Named {
     name:string
     data: any
