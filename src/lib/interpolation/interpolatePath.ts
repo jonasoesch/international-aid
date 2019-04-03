@@ -286,7 +286,7 @@ function normalizePathString(pathString:string) {
  *   end command object and returns true if the segment should be excluded from splitting.
  * @returns {Function} Interpolation function that maps t ([0, 1]) to a path `d` string.
  */
-export default function interpolatePath(a:string, b:string, excludeSegment:Function):Function {
+export function interpolatePath(a:string, b:string, excludeSegment?:Function):Function {
     // remove Z, remove spaces after letters as seen in IE
     const aNormalized = normalizePathString(a);
     const bNormalized = normalizePathString(b);

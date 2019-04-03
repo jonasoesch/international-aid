@@ -6,6 +6,7 @@ import {Axis} from "./Axis"
 import {Annotation} from "./Annotation"
 import {ChartDefinition, 
     AxisDefinition, 
+    GroupDefinition, 
     CharacterDefinition, 
     AnnotationDefinition,
     Named} from "./Definitions"
@@ -88,7 +89,7 @@ export abstract class Chart implements Drawable {
     buildChart(def:ChartDefinition) {
         this.data = def.data
         this.axes = this.buildAxes(def.axes)
-        this.characters = this.buildCharacters(def.characters)
+        this.characters = this.buildCharacters(def.group)
         this.annotations = this.buildAnnotations(def.annotations)
     }
 
@@ -113,8 +114,13 @@ export abstract class Chart implements Drawable {
 
     abstract buildAxis(axis:AxisDefinition):Axis
 
-    buildCharacters(chars:CharacterDefinition[]) {
-        return buildMapWithName(chars, this.buildCharacter.bind(this)) 
+    buildCharacters(group:GroupDefinition) {
+        let characters = group.characters.map( (chara:CharacterDefinition) => {
+            chara.axes = group.axes
+            chara.field = group.field
+            return chara
+        })
+        return buildMapWithName(characters, this.buildCharacter.bind(this)) 
     }
 
     abstract buildCharacter(charaDef:CharacterDefinition):Character

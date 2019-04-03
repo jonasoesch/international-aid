@@ -10,6 +10,7 @@ export abstract class Axis {
     _scale:any
     _name:string
     _stage:d3.Selection<any, any, any, any>
+    _field:string
 
     width:number
     height:number
@@ -22,6 +23,7 @@ export abstract class Axis {
         this.stage = stage
         this.width = width
         this.height = height
+        this.field = axis.field
         this.buildAxis(axis) 
     }
 
@@ -33,7 +35,6 @@ export abstract class Axis {
 
 
     buildAnnotations(annotations:AnnotationDefinition[]){
-        console.log(annotations)
         return buildMapWithName(annotations, this.buildAnnotation) 
     }
 
@@ -52,4 +53,6 @@ export abstract class Axis {
     get name() {return this._name}
     set stage(stage:d3.Selection<any, any, any,any>) {this._stage = stage}
     get stage() {return this._stage}
+    get field() {return this._field}
+    set field(name:string) {this._field = name}
 }

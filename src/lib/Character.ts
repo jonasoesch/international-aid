@@ -8,7 +8,7 @@ interface Scale extends Function {}
 export abstract class Character {
 
     private name:string
-    private field:string
+    protected field:string
     protected color:string
     private annotations:Annotation[]
     protected stage:d3.Selection<any, any, any, any>
@@ -21,7 +21,5 @@ export abstract class Character {
     }
 
     public abstract draw():void
-    public path(xScale:Scale, yScale:Scale, data:[]) {
-        return "a path" 
-    }
+    public abstract get path():string 
 }

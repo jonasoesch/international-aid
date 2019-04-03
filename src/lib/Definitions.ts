@@ -1,26 +1,47 @@
+import {Chart} from "./Chart"
+
 export interface Named {
     name:string
 }
 
 export interface ChartDefinition extends Named {
+    // Will be iused to define the stage where the chart is drawn
     name:string
+
+    // TODO: Create an Interface for Data
     data: any
+
     axes: AxisDefinition[]
-    characters: CharacterDefinition[]
+    group: GroupDefinition
+    
+    // Annotations will be drawn as a title to the chart
     annotations?: AnnotationDefinition[]
 }
 
 export interface AxisDefinition extends Named {
     name:string
     domain: number[]
+    // This will be used to access the corresponding property in the CSV when drawing a character
+    field?:string
     annotations?:AnnotationDefinition[]
+}
+
+export interface GroupDefinition {
+    // Axes and the field are typically the same for all characters
+    field:string
+    axes: {
+        x?:string
+        y?:string
+    } 
+    characters:CharacterDefinition[]
 }
 
 export interface CharacterDefinition extends Named {
     name:string
-    field:string
     color:string
-    axes: {
+    // Field and axes can also be set spcifically for one character
+    field?:string
+    axes?: {
         x?:string
         y?:string
     } 
@@ -34,7 +55,18 @@ export interface AnnotationDefinition extends Named {
 }
 
 export interface OffsetDefinition {
-    left:number,
+    left:number
     top:number
 }
 
+export interface MorphingChartDefinition extends Named {
+    name:string
+    from:Chart
+    to:Chart
+    characters:MorphingCharacterDefinition[]
+}
+
+export interface MorphingCharacterDefinition {
+    from:string
+    to:string
+}
