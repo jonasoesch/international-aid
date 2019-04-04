@@ -1,8 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,700');
 
 
+body {
+    height: 3000px;
+    background-color: #D9CFC3
+}
+
 .Graph {
     width: 720px;
     height: 500px;
-    border: 1px solid red;
+    border: 1px solid white;
+} 
+
+.Graph {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+
+
+.axis line {
+    stroke: #fff;
+}
+
+.axis path {
+    display: none
+}
+
+.axis text {
+    color: #fff;
+    font-family: "Fira Sans";
+    font-size: 15px;
 }

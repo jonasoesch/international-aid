@@ -17,7 +17,7 @@ export function  throwIfNotSet<T>(value:T, msg?:string):T {
     }
 
 export function valOrDefault<T>(value:T, deflt:T):T {
-        if(value === null) {return deflt} 
+        if(value === null || value === undefined) {return deflt} 
         else {return value}
     }
 

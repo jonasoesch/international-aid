@@ -34,10 +34,12 @@ class SlopeAxis extends Axis {
 
     draw() {
         let axis:d3.Axis<number[]> 
-            if(this.name === "from") {axis = d3.axisLeft(this.scale)}
-        if(this.name === "to") {axis = d3.axisRight(this.scale)}
+        if(this.name === "from") {axis = d3.axisLeft(this.scale).tickArguments([5]);}
+        if(this.name === "to") {axis = d3.axisRight(this.scale).tickArguments([5]);}
         if(this.name !== "x") {
-            this.stage.call(throwIfNotSet(axis, "Axis name needs to be either 'from' or 'to'"))
+            this.stage
+                .attr("class", "axis")
+                .call(throwIfNotSet(axis, "Axis name needs to be either 'from' or 'to'"))
         }
         if(this.name === "to") {
             this.stage.attr("transform", `translate(${this.width}, 0)`) 
@@ -80,10 +82,10 @@ class SlopeCharacter extends Character {
         return d3.area()
             .x((d:any, i:number) => this.xScale(i))
             .y0((d:any) => this.yScale(d[this.y]))
-            .y1((d:any) => this.yScale(d["donations"])-1)
+            .y1((d:any) => this.yScale(d["donations"])-2)
     }
 
     get path() {
-        return this.pathGenerator()(this.data) 
+        return this.pathGenerator()(this.data)
     }
 }

@@ -97,6 +97,10 @@ export class Logger {
         }) 
     }
 
+
+    // TODO: Implement
+    public error() {}
+
     private waitMore() {
         this.waitingForActionSince = this.waitingForActionSince + 20
         return this.waitingForActionSince < 120 // don't wait more than 2 min

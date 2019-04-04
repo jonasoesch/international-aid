@@ -1,6 +1,9 @@
 import * as d3 from "d3"
 import {SlopeChart} from "../lib/SlopeChart"
 
+
+
+
 export function oldBoys():Promise<any> {
     return d3.csv("data/oldBoys.csv").then((data) => {
 
@@ -25,7 +28,7 @@ export function oldBoys():Promise<any> {
                 {
                     name: "from",
                     field: "donations",
-                    domain: [0,300000000000],
+                    domain: [0, 300],
                     annotations: [
                         {name: "70s", offset: {left: 0, top: 0}}
                     ]
@@ -33,7 +36,7 @@ export function oldBoys():Promise<any> {
                 {
                     name: "to",
                     field: "donations",
-                    domain: [0, 300000000000]
+                    domain: [0, 300]
                 },
                 {
                     name: "x",
@@ -49,70 +52,70 @@ export function oldBoys():Promise<any> {
                 characters: [
                 { 
                     name: "United States",
-                    color: "red",
+                    color: "#0038A6",
                     annotations: [
                         {name: "USA", offset: {left: 0, top: 0}} 
                     ]
                 },
                 { 
                     name: "Japan",
-                    color: "blue",
+                    color: "#E72440",
                     annotations: [
                         {name: "Japan", offset: {left:0, top: 0}}
                     ]
                 },
                 { 
                     name: "Germany",
-                    color: "black",
+                    color: "#FFD500",
                     annotations: [
                         {name: "Germany", offset: {left:0, top: 0}}
                     ]
                 },
                 { 
                     name: "France",
-                    color: "black",
+                    color: "#fff",
                     annotations: [
                         {name: "France", offset: {left:0, top: 0}}
                     ],
                 },
                 { 
                     name: "United Kingdom",
-                    color: "black",
+                    color: "#9B9B9B",
                     annotations: [
                         {name: "UK", offset: {left:0, top: 0}}
                     ],
                 },
                 { 
                     name: "Netherlands",
-                    color: "black",
+                    color: "#9B9B9B",
                     annotations: [
                         {name: "Netherlands", offset: {left:0, top: 0}}
                     ]
                 },
                 { 
                     name: "Australia",
-                    color: "black",
+                    color: "#9B9B9B",
                     annotations: [
                         {name: "Australia", offset: {left:0, top: 0}}
                     ]
                 },
                 { 
                     name: "Sweden",
-                    color: "black",
+                    color: "#9B9B9B",
                     annotations: [
                         {name: "Sweden", offset: {left:0, top: 0}}
                     ]
                 },
                 { 
                     name: "Norway",
-                    color: "black",
+                    color: "#9B9B9B",
                     annotations: [
                         {name: "Norway", offset: {left:0, top: 0}}
                     ]
                 },
                 { 
                     name: "All others",
-                    color: "orange",
+                    color: "#000",
                     annotations: [
                         {name: "All others", offset: {left:0, top: 0}}
                     ]

@@ -1,12 +1,13 @@
 import {oldBoys} from "./charts/oldBoys"
 import {newKids} from "./charts/newKids"
-import {MorphingChartDefinition} from "./lib/Definitions"
+import {MorphingChartDefinition, StepDefinition} from "./lib/Definitions"
 import {MorphingChart} from "./lib/MorphingChart"
+import {Director} from "./lib/Director"
 
 Promise.all([ oldBoys(), newKids() ]).then(charts => {
-    charts.forEach(c => c.draw())
 
     let oldBoys = charts[0]
+    oldBoys.draw()
     let newKids = charts[1]
 
     let morphin:MorphingChartDefinition = {
@@ -19,10 +20,17 @@ Promise.all([ oldBoys(), newKids() ]).then(charts => {
             {from: "All others", to: "Ireland"},
             {from: "All others", to: "Greece"},
             {from: "All others", to: "Korea"},
-            {from: "All others", to: "Others"},
         ]
     }
 
-    let m = new MorphingChart(morphin)
-    m.draw()
+    let morphIntoNewKids = new MorphingChart(morphin)
+
+
+    let steps:StepDefinition[] = [
+        {from: -200, to:100, draw:oldBoys},
+        {from: 100, to:300, draw:morphIntoNewKids},
+        {from: 300, to:1500, draw:newKids},
+    ]
+    new Director(steps)
+         
 })

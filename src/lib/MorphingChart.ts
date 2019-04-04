@@ -4,6 +4,8 @@ import {MorphingChartDefinition, MorphingCharacterDefinition} from "./Definition
 import {Chart} from "./Chart"
 import {Character} from "./Character"
 import {MorphingCharacter} from "./MorphingCharacter"
+import {Design} from "./Design"
+import {valOrDefault} from "./Helpers"
 
 
 
@@ -11,17 +13,20 @@ export class MorphingChart implements Drawable {
     name:string
     from:Chart
     to:Chart
+    design:Design 
     stage:d3.Selection<any, any, any, any>
-        characters:MorphingCharacter[]
+    characters:MorphingCharacter[]
+    position:number = 0
 
 
-        constructor(chartDef:MorphingChartDefinition) {
-            this.from = chartDef.from
-            this.to = chartDef.to    
-            this.name = chartDef.name
-            this.initStage()
-            this.characters = this.buildCharacters(chartDef.characters)
-        }
+    constructor(chartDef:MorphingChartDefinition) {
+        this.from = chartDef.from
+        this.to = chartDef.to    
+        this.name = chartDef.name
+        this.design = valOrDefault(chartDef.design, this.from.design)
+        this.initStage()
+        this.characters = this.buildCharacters(chartDef.characters)
+    }
 
 
     /** Adds an SVG with the right dimensions
@@ -67,20 +72,32 @@ export class MorphingChart implements Drawable {
         })
     }
 
-     getCharacter(chart:Chart, name:string):Character {
-       return chart.characters.get(name)  
+    getCharacter(chart:Chart, name:string):Character {
+        return chart.characters.get(name)  
     }
 
 
     characterStage():d3.Selection<any, any, any, any> {
         return this.stage.append("g")
+            .attr("transform", `translate(${this.design.margin}, ${this.design.margin})`)
     }
 
-
+    atPosition(position:number) {
+        this.position = position 
+        return this
+    }
 
 
     draw() {
-        this.characters.forEach( c => c.draw() )
+        this.hide()
+        this.characters.forEach( c => c.atPosition(this.position).draw() )
     }
-    hide() {}
+    hide() {
+        this.stage.selectAll("g path").remove()
+    } 
+
+
+    unhide() {
+    }
+
 }

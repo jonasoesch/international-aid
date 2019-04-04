@@ -1,4 +1,6 @@
 import {Chart} from "./Chart"
+import {Drawable} from "./Drawable"
+import {Design} from "./Design"
 
 export interface Named {
     name:string
@@ -63,10 +65,17 @@ export interface MorphingChartDefinition extends Named {
     name:string
     from:Chart
     to:Chart
+    design?:Design
     characters:MorphingCharacterDefinition[]
 }
 
 export interface MorphingCharacterDefinition {
     from:string
     to:string
+}
+
+export interface StepDefinition {
+    from:number
+    to:number
+    draw:Drawable
 }

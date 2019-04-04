@@ -1,20 +1,10 @@
 import * as d3 from 'd3'
 import {Logger} from './Logger'
 import {Drawable} from './Drawable'
+import {MorphingChart} from "./MorphingChart"
+import {StepDefinition} from "./Definitions"
 
 
-/**
- * A director is responsible for drawing and hiding Drawables based on the current scroll position. The director will also instantiate a `Logger` object and add a new record everytime it redraws the view.
- * It is used like this:
- * ```javascript
- *  // graph1, morphingGraph and graph2 are Drawables 
- *  let director = new Director() 
- *  director.addStep(graph1, 0, 500)
- *  director.addStep(morphingGraph, 500, 1000)
- *  director.addStep(graph2, 1000, 10000)
- * ```
- * With this code, the director will draw `graph1` from scroll position 0 to 500, `morphingGraph` from scroll position 500 to 1000 and `graph2` from scroll position 1000 to 10000.
- **/
 export class Director {
     storyboard:Step[] = []
     timer:Date = new Date()
@@ -22,12 +12,13 @@ export class Director {
     lastScrollTop:number
     logger:Logger
 
-    constructor() {
+    constructor(stepDefs:StepDefinition[]) {
        this.lastScrollTop = window.scrollY;
        this.logger = new Logger()
         
+        this.storyboard = this.buildSteps(stepDefs)
+        
         if (window.requestAnimationFrame) {
-            let that = this
             try {
                 this.loop();
             } catch(e) {
@@ -93,25 +84,25 @@ export class Director {
      **/
     public drawAll(offset:number) {
     this.storyboard.forEach( (step) => {
-            if (offset > step.start && offset <= step.end) {
-                this.draw(step.graph, this.howFar(step, offset)) 
+            if (offset > step.from && offset <= step.to) {
+                this.draw(step.draw, this.howFar(step, offset)) 
             } else {
-                this.hide(step.graph) 
+                this.hide(step.draw) 
             }
         })
     }
 
 
-    /**
-     *  Adding a new entry to the storyboard
-     **/
-    public addStep(start:number, end:number, graph:Drawable) {
-        this.storyboard.push({
-            start: start,
-            end: end,
-            graph: graph
-        })
+    private buildSteps(stepDefs:StepDefinition[]) {
+        return stepDefs.map( (stepDef) => {
+            return {
+                from: stepDef.from,
+                to: stepDef.to,
+                draw: stepDef.draw
+            }
+        }) 
     }
+
 
     /**
      * This method transforms the global scroll position
@@ -119,8 +110,8 @@ export class Director {
      * the reader is.
      **/
     protected howFar(step:Step, offset:number):number {
-        let total = step.end-step.start
-        let position = offset - step.start
+        let total = step.to-step.from
+        let position = offset - step.from
 
         if(total < 0) {throw new Error("End is before start")}
         if(position < 0) {throw new Error("Position is not between end and start")}
@@ -143,6 +134,12 @@ export class Director {
      * the `howFar()`-method). Then it draws the `Drawable`.
      **/
     private draw(graph:Drawable, howFar:number) {
+            //this.logger.animation(graph.name, howFar)
+        if(graph instanceof MorphingChart) {
+            graph.atPosition(howFar).draw() 
+        } else {
+            graph.draw() 
+        }
 
     }
 
@@ -157,9 +154,9 @@ export class Director {
     public toString():string {
         let out = ""
         this.storyboard.forEach(step => {
-            out = out + step.start + "–"
-            out = out + step.end + ": "
-            out = out + step.graph.name + "\n"
+            out = out + step.from + "–"
+            out = out + step.to + ": "
+            out = out + step.draw.name + "\n"
         })
         return out
     }
@@ -168,9 +165,9 @@ export class Director {
 
 
 interface Step {
-    start:number
-    end:number
-    graph:Drawable
+    from:number
+    to:number
+    draw:Drawable
 }
 
 
