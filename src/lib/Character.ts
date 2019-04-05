@@ -7,10 +7,10 @@ interface Scale extends Function {}
 
 export abstract class Character {
 
-    private name:string
+    protected name:string
     protected field:string
     protected color:string
-    private annotations:Annotation[]
+    protected annotations:Annotation[]
     protected stage:d3.Selection<any, any, any, any>
 
     constructor(charDef:CharacterDefinition, 

@@ -3,7 +3,7 @@ import {Chart} from "./Chart"
 import {Axis} from "./Axis"
 import {Character} from "./Character"
 import {AxisDefinition, CharacterDefinition} from "./Definitions"
-import {throwIfNotSet} from "./Helpers"
+import {throwIfNotSet, valOrDefault} from "./Helpers"
 
 
 export class SlopeChart extends Chart {
@@ -54,7 +54,6 @@ class SlopeCharacter extends Character {
     y:string
     xScale:any
     data:any
-    field:string
 
     constructor(charDef:CharacterDefinition,
         stage:d3.Selection<any, any, any, any>,
@@ -68,6 +67,7 @@ class SlopeCharacter extends Character {
         this.xScale = xAxis.scale
         this.data = data
         this.field = charDef.field
+        this.annotations = valOrDefault(charDef.annotations, []) 
     }
 
     draw() {
@@ -75,6 +75,51 @@ class SlopeCharacter extends Character {
             .append("path")
             .attr("d", this.path)
             .attr("fill", this.color)
+        this.drawAnnotations()
+    }
+
+    drawAnnotations() {
+        this.annotations.forEach(a => this.drawAnnotation(a)) 
+    }
+
+    isLight(color:string) {
+        return d3.hsl(d3.color(this.color)).l > 0.6
+    }
+
+    lightOrDarkBg(background:string, ifDark:string, ifLight:string) {
+        if (this.isLight(background)) {
+            return ifLight 
+        } else {
+            return ifDark 
+        }
+    }
+
+    drawAnnotation(annotation:any) {
+
+        this.stage
+            .append("rect")
+            .attr("fill", this.color)
+            .attr("width", 75)
+            .attr("height", 20)
+            .attr("y", this.yScale(this.data[1][this.y])-10 + annotation.offset.top)
+            .attr("x", this.xScale(1))
+
+        this.stage
+            .append("text")
+            .text(annotation.name)
+            .attr("fill", this.lightOrDarkBg(this.color, "#fff", "#000"))
+            .attr("y", this.yScale(this.data[1][this.y]) + 5 + annotation.offset.top)
+            .attr("x", this.xScale(1)+5)
+
+
+
+        this.stage
+            .append("rect")
+            .attr("fill", this.color)
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("y", this.yScale(this.data[0][this.y])-5)
+            .attr("x", this.xScale(0)-10)
     }
 
 

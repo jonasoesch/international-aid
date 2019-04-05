@@ -61,14 +61,14 @@ export function oldBoys():Promise<any> {
                     name: "Japan",
                     color: "#E72440",
                     annotations: [
-                        {name: "Japan", offset: {left:0, top: 0}}
+                        {name: "Japan", offset: {left:0, top: 5}}
                     ]
                 },
                 { 
                     name: "Germany",
                     color: "#FFD500",
                     annotations: [
-                        {name: "Germany", offset: {left:0, top: 0}}
+                        {name: "Germany", offset: {left:0, top: -10}}
                     ]
                 },
                 { 
@@ -117,7 +117,7 @@ export function oldBoys():Promise<any> {
                     name: "All others",
                     color: "#000",
                     annotations: [
-                        {name: "All others", offset: {left:0, top: 0}}
+                        {name: "All others", offset: {left:0, top: -10}}
                     ]
                 }
 

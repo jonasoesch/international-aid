@@ -3,7 +3,8 @@
 
 body {
     height: 3000px;
-    background-color: #D9CFC3
+    background-color: #D9CFC3;
+    font-family: "Fira Sans";
 }
 
 .Graph {
@@ -30,7 +31,11 @@ body {
 }
 
 .axis text {
-    color: #fff;
     font-family: "Fira Sans";
+    color: #fff;
     font-size: 15px;
+}
+
+text {
+   font-size: 12px; 
 }
