@@ -1,44 +1,37 @@
 import * as d3 from "d3"
 import {SlopeChart} from "../lib/SlopeChart"
 
-
-
-
-export function oldBoys():Promise<any> {
-    return d3.csv("data/oldBoys.csv").then((data) => {
+export function rise():Promise<any> {
+    return d3.csv("data/1-rise.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {
             donor: d.donor,
             decade: d.decade,
-            donations: parseInt(d.donations)
+            amount: parseFloat(d.amount)
         }})
 
         let a = {
-            name: "oldBoys",
+            name: "rise",
             data: dd,
             annotations: [{
-                name: "Blabla",
-                offset: {
-                    left: 20,
-                    top: 20
-                }
+                name: "Yearly donations to international aid have been rising for most countries between to seventies and the noughties",
             }],
             axes: [
                 {
                     name: "from",
-                    field: "donations",
-                    domain: [0, 300],
+                    field: "amount",
+                    domain: [0, 30],
                     annotations: [
-                    {name: "70s", offset: {left: 0, top: -30}}
+                    {name: "70s"}
                     ]
                 },
                 {
                     name: "to",
-                    field: "donations",
+                    field: "amount",
                     domain: [0, 300],
                     annotations: [
-                    {name: "00s", offset: {left: 0, top: -30}}
+                    {name: "00s"}
                     ]
                 },
                 {
@@ -95,10 +88,8 @@ export function oldBoys():Promise<any> {
                         {name: "Netherlands", offset: {left:0, top: 0}}
                     ]
                 },
-
-
                 { 
-                    name: "All others",
+                    name: "Others",
                     color: "#000",
                     annotations: [
                         {name: "All others", offset: {left:0, top: -10}}

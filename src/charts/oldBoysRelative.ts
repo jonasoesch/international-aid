@@ -4,18 +4,19 @@ import {SlopeChart} from "../lib/SlopeChart"
 
 
 
-export function oldBoys():Promise<any> {
-    return d3.csv("data/oldBoys.csv").then((data) => {
+export function oldBoysRelative():Promise<any> {
+    return d3.csv("data/oldBoysRelative.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {
             donor: d.donor,
-            decade: d.decade,
-            donations: parseInt(d.donations)
+            when: d.when,
+            change: parseInt(d.change)
         }})
 
+
         let a = {
-            name: "oldBoys",
+            name: "oldBoysRelative",
             data: dd,
             annotations: [{
                 name: "Blabla",
@@ -27,18 +28,18 @@ export function oldBoys():Promise<any> {
             axes: [
                 {
                     name: "from",
-                    field: "donations",
-                    domain: [0, 300],
+                    field: "change",
+                    domain: [0, 900],
                     annotations: [
-                    {name: "70s", offset: {left: 0, top: -30}}
+                    {name: "Start", offset: {left: 0, top: -30}}
                     ]
                 },
                 {
                     name: "to",
-                    field: "donations",
-                    domain: [0, 300],
+                    field: "change",
+                    domain: [0, 900],
                     annotations: [
-                    {name: "00s", offset: {left: 0, top: -30}}
+                    {name: "End", offset: {left: 0, top: -30}}
                     ]
                 },
                 {
@@ -85,14 +86,14 @@ export function oldBoys():Promise<any> {
                     name: "United Kingdom",
                     color: "#9B9B9B",
                     annotations: [
-                        {name: "UK", offset: {left:0, top: -8}}
+                        {name: "UK", offset: {left:0, top: -10}}
                     ],
                 },
                 { 
                     name: "Netherlands",
                     color: "#9B9B9B",
                     annotations: [
-                        {name: "Netherlands", offset: {left:0, top: 0}}
+                        {name: "Netherlands", offset: {left:0, top: -8}}
                     ]
                 },
 

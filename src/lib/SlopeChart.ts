@@ -2,8 +2,9 @@ import * as d3 from "d3"
 import {Chart} from "./Chart"
 import {Axis} from "./Axis"
 import {Character} from "./Character"
+import {Annotation} from "./Annotation"
 import {AxisDefinition, CharacterDefinition} from "./Definitions"
-import {throwIfNotSet, valOrDefault} from "./Helpers"
+import {throwIfNotSet, valOrDefault, throwIfEmpty} from "./Helpers"
 
 
 export class SlopeChart extends Chart {
@@ -13,8 +14,9 @@ export class SlopeChart extends Chart {
     }
 
     buildCharacter(chara:CharacterDefinition):SlopeCharacter {
-        let stage = this.characterStage(chara.name) 
+        let stage = this.characterStage(throwIfNotSet(chara.name, "Character has no name"))
         let data = this.data.filter( (d:any) => d[chara.field] === chara.name ) 
+        throwIfEmpty(data, `There is no data for character ${chara.name}`)
         return new SlopeCharacter(chara, stage, data, this.axes.get("from"), this.axes.get("x"))
     }
 
@@ -36,7 +38,7 @@ class SlopeAxis extends Axis {
         let axis:d3.Axis<number[]> 
         if(this.name === "from") {axis = d3.axisLeft(this.scale).tickArguments([5]);}
         if(this.name === "to") {axis = d3.axisRight(this.scale).tickArguments([5]);}
-        if(this.name !== "x") {
+        if(this.name === "from") {
             this.stage
                 .attr("class", "axis")
                 .call(throwIfNotSet(axis, "Axis name needs to be either 'from' or 'to'"))
@@ -45,6 +47,22 @@ class SlopeAxis extends Axis {
             this.stage.attr("transform", `translate(${this.width}, 0)`) 
         }
 
+        this.drawAnnotations()
+
+    }
+
+    drawAnnotations() {
+        this.annotations.forEach(a => this.drawAnnotation(a)) 
+    }
+
+    drawAnnotation(annotation:any) {
+        this.stage
+            .append("text")
+            .attr("class", "axis-label")
+            .text(annotation.name)
+            .attr("fill", "#fff")
+            .attr("x", annotation.offset.left)
+            .attr("y", annotation.offset.top)
     }
 }
 
@@ -65,7 +83,7 @@ class SlopeCharacter extends Character {
         this.yScale = yAxis.scale
         this.y = yAxis.field
         this.xScale = xAxis.scale
-        this.data = data
+        this.data = throwIfEmpty(data, `There is no data for ${this.name}`)
         this.field = charDef.field
         this.annotations = valOrDefault(charDef.annotations, []) 
     }
@@ -79,47 +97,20 @@ class SlopeCharacter extends Character {
     }
 
     drawAnnotations() {
-        this.annotations.forEach(a => this.drawAnnotation(a)) 
-    }
-
-    isLight(color:string) {
-        return d3.hsl(d3.color(this.color)).l > 0.6
-    }
-
-    lightOrDarkBg(background:string, ifDark:string, ifLight:string) {
-        if (this.isLight(background)) {
-            return ifLight 
-        } else {
-            return ifDark 
+        if(this.annotations.length > 0) {
+            this.annotations.forEach(a => this.drawAnnotation(a)) 
         }
     }
 
+
     drawAnnotation(annotation:any) {
-
-        this.stage
-            .append("rect")
-            .attr("fill", this.color)
-            .attr("width", 75)
-            .attr("height", 20)
-            .attr("y", this.yScale(this.data[1][this.y])-10 + annotation.offset.top)
-            .attr("x", this.xScale(1))
-
         this.stage
             .append("text")
             .text(annotation.name)
-            .attr("fill", this.lightOrDarkBg(this.color, "#fff", "#000"))
-            .attr("y", this.yScale(this.data[1][this.y]) + 5 + annotation.offset.top)
-            .attr("x", this.xScale(1)+5)
-
-
-
-        this.stage
-            .append("rect")
             .attr("fill", this.color)
-            .attr("width", 10)
-            .attr("height", 10)
-            .attr("y", this.yScale(this.data[0][this.y])-5)
-            .attr("x", this.xScale(0)-10)
+            //.attr("fill", this.lightOrDarkBg(this.color, "#fff", "#000"))
+            .attr("y", this.annotationY(annotation))
+            .attr("x",this.annotationX(annotation))
     }
 
 
@@ -127,10 +118,30 @@ class SlopeCharacter extends Character {
         return d3.area()
             .x((d:any, i:number) => this.xScale(i))
             .y0((d:any) => this.yScale(d[this.y]))
-            .y1((d:any) => this.yScale(d["donations"])-2)
+            .y1((d:any) => this.yScale(d[this.y])-2)
     }
 
     get path() {
+        throwIfEmpty(this.data, `No data for ${this.name}`)
         return this.pathGenerator()(this.data)
     }
+
+
+    protected annotationY(annotation:Annotation):number {
+       return this.yScale(this.data[0][this.y]) + 5 + annotation.offset.top
+    }
+
+    protected annotationX(annotation:Annotation):number {
+        return this.xScale(1)+5 
+    }
+
+    get label() {
+        let annot = this.annotations[0] 
+        return {
+            name: annot.name,
+            x: this.annotationX(annot),
+            y: this.annotationY(annot)
+        }
+    }
+
 }

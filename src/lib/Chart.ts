@@ -6,11 +6,11 @@ import {Axis} from "./Axis"
 import {Annotation} from "./Annotation"
 import {ChartDefinition, 
     AxisDefinition, 
-    GroupDefinition, 
+    CastDefinition, 
     CharacterDefinition, 
     AnnotationDefinition,
     Named} from "./Definitions"
-import {buildMapWithName, throwIfNotSet, valOrDefault} from "./Helpers"
+import {buildMapWithName, throwIfNotSet, valOrDefault, throwIfEmpty} from "./Helpers"
 
 
 interface Scale extends Function {
@@ -29,12 +29,82 @@ export abstract class Chart implements Drawable {
 
 
     constructor(definition:ChartDefinition) {
-        this.name = definition.name
+        this.validateDefinition(definition)
+        this.name = throwIfNotSet(definition.name, "There is no chart name")
         this.initStage()
         this.buildChart(definition)
     }
 
-  
+
+    validateDefinition(definition:ChartDefinition) {
+        this.hasAName(definition)
+        this.hasData(definition) 
+        this.axesMatchData(definition)
+        this.castMatchesAxes(definition)
+        this.castMatchesData(definition)
+        this.charactersInData(definition)
+    }
+
+    hasAName(definition:ChartDefinition) {
+        throwIfNotSet(definition.name, `Chart has no name`) 
+    }
+
+    hasData(definition:ChartDefinition) {
+        throwIfEmpty(definition.data, `There is no data for chart ${definition.name}`) 
+    }
+
+    axesMatchData(definition:ChartDefinition) {
+        definition.axes.forEach(a => {
+            if(a.hasOwnProperty("field"))  {
+                if(!definition.data[0].hasOwnProperty(a.field))  {
+                    throw new Error(`There is no ${a.field} field in the data provided to the ${definition.name} chart`)  
+                }
+            }
+        }) 
+    }
+
+    castMatchesAxes(definition:ChartDefinition) {
+        this.castMatchAxis(definition, "x")
+        this.castMatchAxis(definition, "y")
+    }
+
+    castMatchAxis(definition:ChartDefinition, axis:"x"|"y") {
+        if(definition.cast.axes.hasOwnProperty(axis)) {
+            let matches = definition.axes.filter(a => {
+                if(a.hasOwnProperty("name") && a.name === definition.cast.axes[axis]) {return true} 
+                else {return false}
+            })
+            if(matches.length === 0) {
+                throw new Error(`In the ${definition.name}-chart definition, an axis named "${definition.cast.axes[axis]}" is missing`)
+            }
+            if(matches.length > 1) {
+                throw new Error(`In the ${definition.name}-chart definition, an axis named "${definition.cast.axes[axis]}" occurs more than once`) 
+            }
+        }
+    }
+
+
+    castMatchesData(definition:ChartDefinition) {
+        if(!definition.data[0].hasOwnProperty(definition.cast.field)) {
+            throw new Error(`In the "${definition.name}"-chart definition, the field "${definition.cast.field}" given for the characters can't be found in the data`)  
+        }
+    }
+
+
+    charactersInData(definition:ChartDefinition) {
+        definition.cast.characters.forEach(c => {
+            let matches = definition.data.filter((d:any) => {
+                return d[definition.cast.field] === c.name
+            })
+            if(matches.length === 0) {
+                throw new Error(`In chart "${definition.name}", the character "${c.name} can't be found in the "${definition.cast.field}"-field in the data`) 
+            }
+
+        }) 
+    }
+
+
+
 
     /** Adds an SVG with the right dimensions
      * into the containing element
@@ -43,6 +113,8 @@ export abstract class Chart implements Drawable {
         this.insertChart()
         this.setDimensions()
     }
+
+
 
     private insertChart() {
         this.stage = d3.select(this.container)
@@ -82,42 +154,41 @@ export abstract class Chart implements Drawable {
         if(document.getElementById(this.name)) {
             return document.getElementById(this.name)
         } else {
-            throw new Error("Don't know where to draw the Graph")
+            throw new Error(`Don't know where to draw the chart with name ${this.name}`)
         }
     }
 
     buildChart(def:ChartDefinition) {
         this.data = def.data
         this.axes = this.buildAxes(def.axes)
-        this.characters = this.buildCharacters(def.group)
+        this.characters = this.buildCharacters(def.cast)
         this.annotations = this.buildAnnotations(def.annotations)
     }
 
 
     buildAxes(axes:AxisDefinition[]):Map<string, Axis> {
-        let that = this
         return buildMapWithName(axes, this.buildAxis.bind(this))
     }
 
     axisStage(name:string):d3.Selection<any, any, any, any> {
         return this.stage.append("g")
-            .attr("transform", `translate(${this.design.margin}, ${this.design.margin})`)
-            .append("g")
-            .attr("id", `axis-${name}`)
+        .attr("transform", `translate(${this.design.margin}, ${this.design.margin})`)
+        .append("g")
+        .attr("id", `axis-${name}`)
     }
 
     characterStage(name:string):d3.Selection<any, any, any, any> {
         return this.stage.append("g")
-            .attr("id", `character-${name}`)
-            .attr("transform", `translate(${this.design.margin}, ${this.design.margin})`) 
+        .attr("id", `character-${name}`)
+        .attr("transform", `translate(${this.design.margin}, ${this.design.margin})`) 
     }
 
     abstract buildAxis(axis:AxisDefinition):Axis
 
-    buildCharacters(group:GroupDefinition) {
-        let characters = group.characters.map( (chara:CharacterDefinition) => {
-            chara.axes = group.axes
-            chara.field = group.field
+    buildCharacters(cast:CastDefinition) {
+        let characters = cast.characters.map( (chara:CharacterDefinition) => {
+            chara.axes = cast.axes
+            chara.field = cast.field
             return chara
         })
         return buildMapWithName(characters, this.buildCharacter.bind(this)) 
@@ -135,7 +206,7 @@ export abstract class Chart implements Drawable {
 
 
     // ========= Helper methods ==========
-  
+
 
 
     draw() {

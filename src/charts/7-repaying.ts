@@ -1,21 +1,18 @@
 import * as d3 from "d3"
 import {SlopeChart} from "../lib/SlopeChart"
 
-
-
-
-export function oldBoys():Promise<any> {
-    return d3.csv("data/oldBoys.csv").then((data) => {
+export function repaying():Promise<any> {
+    return d3.csv("data/7-repaying.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {
-            donor: d.donor,
-            decade: d.decade,
-            donations: parseInt(d.donations)
+            chara: d.chara,
+            year: new Date(Date.parse(d.year)),
+            total: d.total
         }})
 
         let a = {
-            name: "oldBoys",
+            name: "repaying",
             data: dd,
             annotations: [{
                 name: "Blabla",

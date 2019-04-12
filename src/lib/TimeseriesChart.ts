@@ -3,7 +3,7 @@ import {Chart} from "./Chart"
 import {Axis} from "./Axis"
 import {Character} from "./Character"
 import {AxisDefinition, CharacterDefinition} from "./Definitions"
-import {throwIfNotSet} from "./Helpers"
+import {throwIfNotSet, throwIfEmpty} from "./Helpers"
 
 
 export class TimeseriesChart extends Chart {
@@ -11,6 +11,8 @@ export class TimeseriesChart extends Chart {
         let s = this.axisStage(axis.name)
         return new TimeseriesAxis(axis, s, this.innerWidth, this.innerHeight)
     }
+
+    validate(data:any) {}
 
     buildCharacter(chara:CharacterDefinition):TimeseriesCharacter {
         let stage = this.characterStage(chara.name) 
@@ -61,7 +63,7 @@ class TimeseriesCharacter extends Character {
         xAxis:any) 
     {
         super(charDef, stage)
-        this.data = data      
+        this.data = throwIfEmpty(data, `No data for character ${this.name}`)
         this.field = charDef.field
         this.yScale = yAxis.scale
         this.y = yAxis.field
@@ -69,8 +71,8 @@ class TimeseriesCharacter extends Character {
         this.x = xAxis.field
     }
 
+
     draw() {
-        console.log(this.data)
 
         this.stage
             .append("path")
@@ -89,7 +91,17 @@ class TimeseriesCharacter extends Character {
     }
 
     get path() {
+        throwIfEmpty(this.data, `No data for ${this.name}`)
         return this.pathGenerator()(this.data) 
+    }
+
+    // TODO: Implement
+    get label() {
+        return {
+            name: "",
+            x: 0,
+            y: 0
+        } 
     }
 
 }

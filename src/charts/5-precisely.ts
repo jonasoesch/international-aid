@@ -2,20 +2,19 @@ import * as d3 from "d3"
 import {SlopeChart} from "../lib/SlopeChart"
 
 
-
-
-export function oldBoys():Promise<any> {
-    return d3.csv("data/oldBoys.csv").then((data) => {
+export function precisely():Promise<any> {
+    return d3.csv("data/5-howMuch.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {
-            donor: d.donor,
-            decade: d.decade,
-            donations: parseInt(d.donations)
+            chara: d.chara,
+            year: new Date(Date.parse(d.year)),
+            amount: parseInt(d.amount)
         }})
 
+        // TODO: Proper definition for precisely
         let a = {
-            name: "oldBoys",
+            name: "precisely",
             data: dd,
             annotations: [{
                 name: "Blabla",

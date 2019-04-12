@@ -5,7 +5,7 @@ import {Chart} from "./Chart"
 import {Character} from "./Character"
 import {MorphingCharacter} from "./MorphingCharacter"
 import {Design} from "./Design"
-import {valOrDefault} from "./Helpers"
+import {valOrDefault, throwIfNotSet} from "./Helpers"
 
 
 
@@ -20,9 +20,9 @@ export class MorphingChart implements Drawable {
 
 
     constructor(chartDef:MorphingChartDefinition) {
-        this.from = chartDef.from
-        this.to = chartDef.to    
-        this.name = chartDef.name
+        this.name = throwIfNotSet(chartDef.name, "No name for MorphinChart")
+        this.to = throwIfNotSet(chartDef.to, `Target chart not defined for ${this.name}`) 
+        this.from = throwIfNotSet(chartDef.from, `Origin chart not defined for ${this.name}`)
         this.design = valOrDefault(chartDef.design, this.from.design)
         this.initStage()
         this.characters = this.buildCharacters(chartDef.characters)
@@ -58,7 +58,7 @@ export class MorphingChart implements Drawable {
         if(document.getElementById(this.name)) {
             return document.getElementById(this.name)
         } else {
-            throw new Error("Don't know where to draw the Graph")
+            throw new Error(`Don't know where to draw the chart with name ${this.name}`)
         }
     }
 
@@ -93,7 +93,7 @@ export class MorphingChart implements Drawable {
         this.characters.forEach( c => c.atPosition(this.position).draw() )
     }
     hide() {
-        this.stage.selectAll("g path").remove()
+        this.stage.selectAll("g *").remove()
     } 
 
 

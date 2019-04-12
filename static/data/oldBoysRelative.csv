@@ -1,0 +1,15 @@
+donor,when,change
+United States,start,100.0
+Japan,start,100.0
+Germany,start,100.0
+France,start,100.0
+United Kingdom,start,100.0
+Netherlands,start,100.0
+All others,start,100.0
+United States,end,282.0
+Japan,end,278.0
+Germany,end,231.0
+France,end,431.0
+United Kingdom,end,311.0
+Netherlands,end,365.0
+All others,end,337.0

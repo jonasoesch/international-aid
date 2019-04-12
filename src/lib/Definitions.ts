@@ -14,7 +14,7 @@ export interface ChartDefinition extends Named {
     data: any
 
     axes: AxisDefinition[]
-    group: GroupDefinition
+    cast: CastDefinition
     
     // Annotations will be drawn as a title to the chart
     annotations?: AnnotationDefinition[]
@@ -28,7 +28,7 @@ export interface AxisDefinition extends Named {
     annotations?:AnnotationDefinition[]
 }
 
-export interface GroupDefinition {
+export interface CastDefinition {
     // Axes and the field are typically the same for all characters
     field:string
     axes: {

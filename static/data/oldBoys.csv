@@ -1,23 +1,15 @@
 donor,decade,donations
-United States,70,106
-United States,00,297
-Japan,70,67
-Japan,00,188
-Germany,70,49
-Germany,00,113
-France,70,24
-France,00,105
-United Kingdom,70,23
-United Kingdom,00,71
-Canada,70,18
-Canada,00,38
-Netherlands,70,15
-Netherlands,00,56
-Australia,70,13
-Australia,00,36
-Sweden,70,12
-Sweden,00,32
-Norway,70,5
-Norway,00,36
-All others,70,50
-All others,00,193
+United States,70,106.0
+Japan,70,67.0
+Germany,70,49.0
+France,70,24.0
+United Kingdom,70,23.0
+Netherlands,70,15.0
+All others,70,99.0
+United States,00,297.0
+Japan,00,188.0
+Germany,00,113.0
+France,00,105.0
+United Kingdom,00,71.0
+Netherlands,00,56.0
+All others,00,335.0

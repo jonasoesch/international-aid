@@ -4,39 +4,36 @@ import {SlopeChart} from "../lib/SlopeChart"
 
 
 
-export function oldBoys():Promise<any> {
-    return d3.csv("data/oldBoys.csv").then((data) => {
+export function ranking():Promise<any> {
+    return d3.csv("data/2-ranking.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {
             donor: d.donor,
             decade: d.decade,
-            donations: parseInt(d.donations)
+            rank: parseInt(d.rank)
         }})
 
+
         let a = {
-            name: "oldBoys",
+            name: "ranking",
             data: dd,
             annotations: [{
-                name: "Blabla",
-                offset: {
-                    left: 20,
-                    top: 20
-                }
+                name: "Changes in the major donors of international aid since the between the seventies and the noughties",
             }],
             axes: [
                 {
                     name: "from",
-                    field: "donations",
-                    domain: [0, 300],
+                    field: "decade",
+                    domain: [0, 16],
                     annotations: [
                     {name: "70s", offset: {left: 0, top: -30}}
                     ]
                 },
                 {
                     name: "to",
-                    field: "donations",
-                    domain: [0, 300],
+                    field: "decade",
+                    domain: [0, 16],
                     annotations: [
                     {name: "00s", offset: {left: 0, top: -30}}
                     ]
@@ -85,20 +82,20 @@ export function oldBoys():Promise<any> {
                     name: "United Kingdom",
                     color: "#9B9B9B",
                     annotations: [
-                        {name: "UK", offset: {left:0, top: -8}}
+                        {name: "UK", offset: {left:0, top: -10}}
                     ],
                 },
                 { 
                     name: "Netherlands",
                     color: "#9B9B9B",
                     annotations: [
-                        {name: "Netherlands", offset: {left:0, top: 0}}
+                        {name: "Netherlands", offset: {left:0, top: -8}}
                     ]
                 },
 
 
                 { 
-                    name: "All others",
+                    name: "Others",
                     color: "#000",
                     annotations: [
                         {name: "All others", offset: {left:0, top: -10}}

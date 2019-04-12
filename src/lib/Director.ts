@@ -14,7 +14,7 @@ export class Director {
 
     constructor(stepDefs:StepDefinition[]) {
        this.lastScrollTop = window.scrollY;
-       this.logger = new Logger()
+       //this.logger = new Logger()
         
         this.storyboard = this.buildSteps(stepDefs)
         
@@ -27,8 +27,9 @@ export class Director {
         }
 
         // Send log every 5 seconds
-        setInterval(() => this.save(), 5 * 1000);
-        setInterval(() => this.alive(), 20 * 1000)
+        // TODO: Decativate logger for now
+        //setInterval(() => this.save(), 5 * 1000);
+        //setInterval(() => this.alive(), 20 * 1000)
     }
 
 

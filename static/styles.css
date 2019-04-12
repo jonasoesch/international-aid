@@ -36,6 +36,11 @@ body {
     font-size: 15px;
 }
 
+.axis .axis-label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 text {
    font-size: 12px; 
 }

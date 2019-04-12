@@ -10,7 +10,7 @@ export function buildMapWithName(list:Named[], buildMethod:Function):Map<string,
     }
 
 export function  throwIfNotSet<T>(value:T, msg?:string):T {
-        if(value === null) {
+        if(value === null || value === undefined) {
             throw new Error(valOrDefault(msg, "A value is null and shouldn't be null"))
         }
         return value
@@ -20,4 +20,12 @@ export function valOrDefault<T>(value:T, deflt:T):T {
         if(value === null || value === undefined) {return deflt} 
         else {return value}
     }
+
+export function throwIfEmpty<T>(value:T[], msg?:string) {
+    throwIfNotSet(value)
+    if(value.length === 0) {
+        throw new Error(valOrDefault(msg, "An array has nothing in it.")) 
+    }
+}
+
 

@@ -47,6 +47,7 @@ export abstract class Axis {
 
 
     set annotations(annos:Map<string, Annotation>) {this._annotations = annos}
+    get annotations() {return this._annotations}
     set scale(scale:d3.AxisScale<any>) {this._scale = scale}
     get scale() {return this._scale}
     set name(name:string) {this._name = name}

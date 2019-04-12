@@ -11,6 +11,7 @@ export function newKids():Promise<any> {
             donations: parseInt(d.amount)
         }})
 
+        // TODO: Correct definition
         let a = {
             name: "newKids",
             data: dd,

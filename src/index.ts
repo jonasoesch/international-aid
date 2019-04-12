@@ -1,35 +1,42 @@
-import {oldBoys} from "./charts/oldBoys"
-import {newKids} from "./charts/newKids"
+import {rise} from "./charts/1-rise"
+import {ranking} from "./charts/2-ranking"
+import {newKids} from "./charts/3-newKids"
+import {whoAreThey} from "./charts/4-whoAreThey"
+import {precisely} from "./charts/5-precisely"
+import {recieved} from "./charts/6-recieved"
+import {repaying} from "./charts/7-repaying"
 import {MorphingChartDefinition, StepDefinition} from "./lib/Definitions"
 import {MorphingChart} from "./lib/MorphingChart"
 import {Director} from "./lib/Director"
 
-Promise.all([ oldBoys(), newKids() ]).then(charts => {
+Promise.all([ rise(), ranking(), 
+]).then(charts => {
 
-    let oldBoys = charts[0]
-    oldBoys.draw()
-    let newKids = charts[1]
+    let rise = charts[0]
+    let ranking = charts[1]
 
-    let morphin:MorphingChartDefinition = {
-        name: "morphingNewKids",
-        from: oldBoys,
-        to: newKids,
+
+
+    let riseRanking = new MorphingChart({
+        name: "riseRanking",
+        from: rise,
+        to: ranking,
         characters: [
-            {from: "All others", to: "Taiwan"},
-            {from: "All others", to: "India"},
-            {from: "All others", to: "Ireland"},
-            {from: "All others", to: "Greece"},
-            {from: "All others", to: "Korea"},
+            {from: "United States", to: "United States"},
+            {from: "Japan", to: "Japan"},
+            {from: "Germany", to: "Germany"},
+            {from: "France", to: "France"},
+            {from: "United Kingdom", to: "United Kingdom"},
+            {from: "Netherlands", to: "Netherlands"},
         ]
-    }
+    })
 
-    let morphIntoNewKids = new MorphingChart(morphin)
 
 
     let steps:StepDefinition[] = [
-        {from: -200, to:100, draw:oldBoys},
-        {from: 100, to:300, draw:morphIntoNewKids},
-        {from: 300, to:1500, draw:newKids},
+        {from: -200, to:100, draw:rise},
+        {from: 100, to:300, draw:riseRanking},
+        {from: 300, to:600, draw:ranking},
     ]
     new Director(steps)
          
