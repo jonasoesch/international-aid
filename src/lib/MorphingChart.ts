@@ -33,7 +33,6 @@ export class MorphingChart implements Drawable {
      * into the containing element
      **/
     private initStage() {
-        console.log("staging")
         this.insertChart()
         this.setDimensions()
     }

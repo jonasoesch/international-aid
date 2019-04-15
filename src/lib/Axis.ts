@@ -11,6 +11,7 @@ export abstract class Axis {
     _name:string
     _stage:d3.Selection<any, any, any, any>
     _field:string
+    ticks:any[]
 
     width:number
     height:number
@@ -24,6 +25,7 @@ export abstract class Axis {
         this.width = width
         this.height = height
         this.field = axis.field
+        this.ticks = valOrDefault(axis.ticks, null)
         this.buildAxis(axis) 
     }
 

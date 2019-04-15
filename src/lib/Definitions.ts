@@ -11,7 +11,7 @@ export interface ChartDefinition extends Named {
     name:string
 
     // TODO: Create an Interface for Data
-    data: any
+    data: object[]
 
     axes: AxisDefinition[]
     cast: CastDefinition
@@ -22,9 +22,10 @@ export interface ChartDefinition extends Named {
 
 export interface AxisDefinition extends Named {
     name:string
-    domain: number[]
+    domain:(number[] | string[])
     // This will be used to access the corresponding property in the CSV when drawing a character
     field?:string
+    ticks?:any[]
     annotations?:AnnotationDefinition[]
 }
 
@@ -54,12 +55,14 @@ export interface CharacterDefinition extends Named {
 export interface AnnotationDefinition extends Named {
     name:string
     offset?:OffsetDefinition
+    anchor?:string
 }
 
 export interface OffsetDefinition {
     left:number
     top:number
 }
+
 
 export interface MorphingChartDefinition extends Named {
     name:string

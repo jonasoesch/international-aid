@@ -11,6 +11,8 @@ export function rise():Promise<any> {
             amount: parseFloat(d.amount)
         }})
 
+
+
         let a = {
             name: "rise",
             data: dd,
@@ -22,6 +24,7 @@ export function rise():Promise<any> {
                     name: "from",
                     field: "amount",
                     domain: [0, 30],
+                    ticks: [5,10,15,20,25,30],
                     annotations: [
                     {name: "70s"}
                     ]
@@ -36,7 +39,8 @@ export function rise():Promise<any> {
                 },
                 {
                     name: "x",
-                    domain: [0, 1]
+                    field: "decade",
+                    domain: ["70s", "00s"]
                 }
             ],
             cast:
@@ -46,6 +50,76 @@ export function rise():Promise<any> {
                     y: "from"
                 },
                 characters: [
+                {
+                    name: "Australia",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Australia"}
+                    ]
+                },
+                {
+                    name: "Belgium",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Belgium"}
+                    ]
+                },
+                {
+                    name: "Canada",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Canada"}
+                    ]
+                },
+                {
+                    name: "Denmark",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Denmark"}
+                    ]
+                },
+                {
+                    name: "Kuwait",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Kuwait"}
+                    ]
+                },
+                {
+                    name: "Norway",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Norway"}
+                    ]
+                },
+                {
+                    name: "Saudi Arabia",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Saudi Arabia"}
+                    ]
+                },
+                {
+                    name: "Sweden",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Sweden"}
+                    ]
+                },
+                {
+                    name: "Switzerland",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Switzerland"}
+                    ]
+                },
+                {
+                    name: "United Arab Emirates",
+                    color: "#000",
+                    annotations: [ 
+                        {name: "Emirates"}
+                    ]
+                },
                 { 
                     name: "United States",
                     color: "#0038A6",
@@ -57,7 +131,7 @@ export function rise():Promise<any> {
                     name: "Japan",
                     color: "#E72440",
                     annotations: [
-                        {name: "Japan", offset: {left:0, top: 5}}
+                        {name: "Japan", anchor: "first", offset: {left:0, top: 5}}
                     ]
                 },
                 { 

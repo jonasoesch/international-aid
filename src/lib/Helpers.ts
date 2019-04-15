@@ -22,10 +22,11 @@ export function valOrDefault<T>(value:T, deflt:T):T {
     }
 
 export function throwIfEmpty<T>(value:T[], msg?:string) {
-    throwIfNotSet(value)
+    throwIfNotSet(value, msg)
     if(value.length === 0) {
         throw new Error(valOrDefault(msg, "An array has nothing in it.")) 
     }
+    return value
 }
 
 

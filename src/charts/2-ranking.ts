@@ -15,6 +15,9 @@ export function ranking():Promise<any> {
         }})
 
 
+        console.log(dd)
+
+
         let a = {
             name: "ranking",
             data: dd,
@@ -24,23 +27,25 @@ export function ranking():Promise<any> {
             axes: [
                 {
                     name: "from",
-                    field: "decade",
-                    domain: [0, 16],
+                    field: "rank",
+                    domain: [17, 1],
+                    ticks: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
                     annotations: [
                     {name: "70s", offset: {left: 0, top: -30}}
                     ]
                 },
                 {
                     name: "to",
-                    field: "decade",
-                    domain: [0, 16],
+                    field: "rank",
+                    domain: [17, 1],
                     annotations: [
                     {name: "00s", offset: {left: 0, top: -30}}
                     ]
                 },
                 {
                     name: "x",
-                    domain: [0, 1]
+                    field: "decade",
+                    domain: ["70s", "00s"]
                 }
             ],
             cast:
@@ -92,8 +97,76 @@ export function ranking():Promise<any> {
                         {name: "Netherlands", offset: {left:0, top: -8}}
                     ]
                 },
-
-
+                { 
+                    name: "Australia",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Australia", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "Belgium",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Belgium", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "Canada",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Canada", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "Denmark",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Denmark", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "Kuwait",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Kuwait", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "Norway",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Norway", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "Saudi Arabia",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Saudi Arabia", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "Sweden",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Sweden", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "Switzerland",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "Switzerland", offset: {left:0, top: -8}}
+                    ]
+                },
+                { 
+                    name: "United Arab Emirates",
+                    color: "#9B9B9B",
+                    annotations: [
+                        {name: "United Arab Emirates", offset: {left:0, top: -8}}
+                    ]
+                },
                 { 
                     name: "Others",
                     color: "#000",

@@ -219,7 +219,7 @@ export abstract class Chart implements Drawable {
         this.axes.forEach(a => a.draw())
     }
     protected drawCharacters() {
-        this.characters.forEach(c => c.draw())
+        this.characters.forEach(c => {c.draw()})
     }
     protected drawDescription() {}
 

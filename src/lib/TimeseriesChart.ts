@@ -62,8 +62,7 @@ class TimeseriesCharacter extends Character {
         yAxis:any,
         xAxis:any) 
     {
-        super(charDef, stage)
-        this.data = throwIfEmpty(data, `No data for character ${this.name}`)
+        super(charDef, data, stage)
         this.field = charDef.field
         this.yScale = yAxis.scale
         this.y = yAxis.field

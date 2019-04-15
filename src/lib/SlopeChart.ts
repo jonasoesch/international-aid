@@ -17,27 +17,32 @@ export class SlopeChart extends Chart {
         let stage = this.characterStage(throwIfNotSet(chara.name, "Character has no name"))
         let data = this.data.filter( (d:any) => d[chara.field] === chara.name ) 
         throwIfEmpty(data, `There is no data for character ${chara.name}`)
-        return new SlopeCharacter(chara, stage, data, this.axes.get("from"), this.axes.get("x"))
+        let character =  new SlopeCharacter(chara, stage, data, this.axes.get("from"), this.axes.get("x"))
+        return character
     }
 
 }
 
 class SlopeAxis extends Axis {
-    defineScale(domain:number[]) {
-        let s = d3.scaleLinear()
+    defineScale(domain:(number[]|string[])) {
         if(this.name === "from" || this.name === "to") {
-            s.domain(domain.reverse()).range([0, this.height])
+            return d3.scaleLinear()
+                    .domain((domain as number[]).reverse())
+                    .range([0, this.height])
         }
         if(this.name === "x") {
-            s.domain(domain).range([0, this.width])
+            return d3.scaleOrdinal()
+                    .domain((domain as string[]))
+                    .range([0, this.width])
         }
-        return s
     }
 
     draw() {
         let axis:d3.Axis<number[]> 
-        if(this.name === "from") {axis = d3.axisLeft(this.scale).tickArguments([5]);}
-        if(this.name === "to") {axis = d3.axisRight(this.scale).tickArguments([5]);}
+        this.stage.selectAll("*").remove()
+        if(this.name === "from") {axis = d3.axisLeft(this.scale).tickArguments([6]);}
+        if(this.name === "to") {axis = d3.axisRight(this.scale).tickArguments([6]);}
+        if(this.ticks) {axis.tickValues(this.ticks)}
         if(this.name === "from") {
             this.stage
                 .attr("class", "axis")
@@ -62,7 +67,7 @@ class SlopeAxis extends Axis {
             .text(annotation.name)
             .attr("fill", "#fff")
             .attr("x", annotation.offset.left)
-            .attr("y", annotation.offset.top)
+            .attr("y", annotation.offset.top - 20)
     }
 }
 
@@ -71,24 +76,26 @@ class SlopeCharacter extends Character {
     yScale:any
     y:string
     xScale:any
+    x:string
     data:any
 
     constructor(charDef:CharacterDefinition,
         stage:d3.Selection<any, any, any, any>,
-        data:any,
+        data:object[],
         yAxis:any,
         xAxis:any) 
     {
-        super(charDef, stage)
+        super(charDef, data, stage)
         this.yScale = yAxis.scale
         this.y = yAxis.field
         this.xScale = xAxis.scale
-        this.data = throwIfEmpty(data, `There is no data for ${this.name}`)
+        this.x = xAxis.field
+        this.data = throwIfEmpty(data, `There is no data for character ${this.name}`)
         this.field = charDef.field
-        this.annotations = valOrDefault(charDef.annotations, []) 
     }
 
     draw() {
+        this.stage.selectAll("*").remove()
         this.stage
             .append("path")
             .attr("d", this.path)
@@ -115,8 +122,9 @@ class SlopeCharacter extends Character {
 
 
     pathGenerator() {
+
         return d3.area()
-            .x((d:any, i:number) => this.xScale(i))
+            .x((d:any, i:number) => this.xScale(d[this.x]))
             .y0((d:any) => this.yScale(d[this.y]))
             .y1((d:any) => this.yScale(d[this.y])-2)
     }
@@ -128,12 +136,24 @@ class SlopeCharacter extends Character {
 
 
     protected annotationY(annotation:Annotation):number {
-       return this.yScale(this.data[0][this.y]) + 5 + annotation.offset.top
+        let pos = this.annotationPosition(annotation.anchor)
+       return this.yScale(this.data[pos][this.y]) + 5 + annotation.offset.top
     }
 
     protected annotationX(annotation:Annotation):number {
-        return this.xScale(1)+5 
+        let pos = this.annotationPosition(annotation.anchor)
+        return this.xScale(this.data[pos][this.x])+5 
     }
+
+
+    protected annotationPosition(pos:(string|number)):number {
+        if(pos === "first") {pos = 0}
+        if(pos === "last") {pos = this.data.length -1}
+        if(typeof(pos) === "string") {pos = 0} // Users mistake
+        return pos
+    }
+
+
 
     get label() {
         let annot = this.annotations[0] 
