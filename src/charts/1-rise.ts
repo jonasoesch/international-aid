@@ -26,7 +26,7 @@ export function rise():Promise<any> {
                     domain: [0, 30],
                     ticks: [5,10,15,20,25,30],
                     annotations: [
-                    {name: "70s", offset: {left: 15, top: 0}}
+                        {name: "70s", offset: {left: 15}}
                     ]
                 },
                 {
@@ -34,7 +34,7 @@ export function rise():Promise<any> {
                     field: "amount",
                     domain: [0, 300],
                     annotations: [
-                    {name: "00s", offset: {left: -10, top: 0}}
+                    {name: "00s", offset: {left: -10}}
                     ]
                 },
                 {
@@ -54,21 +54,21 @@ export function rise():Promise<any> {
                     name: "Australia",
                     color: "#57534E",
                     annotations: [ 
-                        {name: "Australia", offset: {top: 0, left: 120}}
+                        {name: "Australia", offset: {left: 120}}
                     ]
                 },
                 {
                     name: "Belgium",
                     color: "#57534E",
                     annotations: [ 
-                        {name: "Belgium", offset: {left: 130, top: 0}}
+                        {name: "Belgium", offset: {left: 130}}
                     ]
                 },
                 {
                     name: "Canada",
                     color: "#57534E",
                     annotations: [ 
-                        {name: "Canada", offset: {top: -3, left: 0}}
+                        {name: "Canada", offset: {top: -3}}
                     ]
                 },
                 {
@@ -82,7 +82,7 @@ export function rise():Promise<any> {
                     name: "Kuwait",
                     color: "#D66F61",
                     annotations: [ 
-                        {name: "Kuwait", offset: {left: 0, top: 4}}
+                        {name: "Kuwait", offset: {top: 4}}
                     ]
                 },
                 {
@@ -103,14 +103,14 @@ export function rise():Promise<any> {
                     name: "Sweden",
                     color: "#57534E",
                     annotations: [ 
-                        {name: "Sweden", offset: {left: 60, top: 0}}
+                        {name: "Sweden", offset: {left: 60}}
                     ]
                 },
                 {
                     name: "Switzerland",
                     color: "#57534E",
                     annotations: [ 
-                        {name: "Switzerland", offset: {left: 60, top: 0}}
+                        {name: "Switzerland", offset: {left: 60}}
                     ]
                 },
                 {
@@ -138,7 +138,7 @@ export function rise():Promise<any> {
                     name: "Germany",
                     color: "#57534E",
                     annotations: [
-                        {name: "Germany", offset: {top: -5, left: 0}}
+                        {name: "Germany", offset: {top: -5}}
                     ]
                 },
                 { 

@@ -60,8 +60,8 @@ export interface AnnotationDefinition extends Named {
 }
 
 export interface OffsetDefinition {
-    left:number
-    top:number
+    left?:number
+    top?:number
 }
 
 

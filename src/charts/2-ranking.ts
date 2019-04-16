@@ -31,7 +31,7 @@ export function ranking():Promise<any> {
                     domain: [17, 1],
                     ticks: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
                     annotations: [
-                    {name: "70s", offset: {left: 15, top: 0}}
+                    {name: "70s", offset: {left: 15}}
                     ]
                 },
                 {
@@ -39,7 +39,7 @@ export function ranking():Promise<any> {
                     field: "rank",
                     domain: [17, 1],
                     annotations: [
-                    {name: "00s", offset: {left: -15, top: 0}}
+                    {name: "00s", offset: {left: -15}}
                     ]
                 },
                 {
@@ -59,119 +59,119 @@ export function ranking():Promise<any> {
                     name: "United States",
                     color: "#57534E",
                     annotations: [
-                        {name: "USA", offset: {left: 0, top: 0}} 
+                        {name: "USA"} 
                     ]
                 },
                 { 
                     name: "Japan",
                     color: "#57534E",
                     annotations: [
-                        {name: "Japan", offset: {left:0, top: 0}}
+                        {name: "Japan"}
                     ]
                 },
                 { 
                     name: "Germany",
                     color: "#57534E",
                     annotations: [
-                        {name: "Germany", offset: {left:0, top: 0}}
+                        {name: "Germany"}
                     ]
                 },
                 { 
                     name: "France",
                     color: "#58768D",
                     annotations: [
-                        {name: "France", offset: {left:0, top: 0}}
+                        {name: "France"}
                     ],
                 },
                 { 
                     name: "United Kingdom",
                     color: "#57534E",
                     annotations: [
-                        {name: "UK", offset: {left:0, top: 0}}
+                        {name: "UK"}
                     ],
                 },
                 { 
                     name: "Netherlands",
                     color: "#58768D",
                     annotations: [
-                        {name: "Netherlands", offset: {left:0, top: 0}}
+                        {name: "Netherlands"}
                     ]
                 },
                 { 
                     name: "Australia",
                     color: "#57534E",
                     annotations: [
-                        {name: "Australia", offset: {left:0, top: 0}}
+                        {name: "Australia"}
                     ]
                 },
                 { 
                     name: "Belgium",
                     color: "#57534E",
                     annotations: [
-                        {name: "Belgium", offset: {left:0, top: 0}}
+                        {name: "Belgium"}
                     ]
                 },
                 { 
                     name: "Canada",
                     color: "#57534E",
                     annotations: [
-                        {name: "Canada", offset: {left:0, top: 0}}
+                        {name: "Canada"}
                     ]
                 },
                 { 
                     name: "Denmark",
                     color: "#58768D",
                     annotations: [
-                        {name: "Denmark", offset: {left:0, top: 0}}
+                        {name: "Denmark"}
                     ]
                 },
                 { 
                     name: "Kuwait",
                     color: "#D66F61",
                     annotations: [
-                        {name: "Kuwait", offset: {left:0, top: 0}}
+                        {name: "Kuwait"}
                     ]
                 },
                 { 
                     name: "Norway",
                     color: "#58768D",
                     annotations: [
-                        {name: "Norway", offset: {left:0, top: 0}}
+                        {name: "Norway"}
                     ]
                 },
                 { 
                     name: "Saudi Arabia",
                     color: "#D66F61",
                     annotations: [
-                        {name: "Saudi Arabia", offset: {left:0, top: 0}}
+                        {name: "Saudi Arabia"}
                     ]
                 },
                 { 
                     name: "Sweden",
                     color: "#57534E",
                     annotations: [
-                        {name: "Sweden", offset: {left:0, top: 0}}
+                        {name: "Sweden"}
                     ]
                 },
                 { 
                     name: "Switzerland",
                     color: "#57534E",
                     annotations: [
-                        {name: "Switzerland", offset: {left:0, top: 0}}
+                        {name: "Switzerland"}
                     ]
                 },
                 { 
                     name: "United Arab Emirates",
                     color: "#D66F61",
                     annotations: [
-                        {name: "United Arab Emirates", offset: {left:0, top: 0}}
+                        {name: "United Arab Emirates"}
                     ]
                 },
                 { 
                     name: "Others",
                     color: "#58768D",
                     annotations: [
-                        {name: "All others", offset: {left:0, top: 0}}
+                        {name: "All others"}
                     ]
                 }
 
