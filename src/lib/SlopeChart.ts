@@ -52,6 +52,10 @@ class SlopeAxis extends Axis {
             this.stage.attr("transform", `translate(${this.width}, 0)`) 
         }
 
+        this.stage.selectAll(".tick line")
+            .attr("x2", this.width)
+            .attr("stroke-dasharray", 4)
+
         this.drawAnnotations()
 
     }
@@ -65,9 +69,10 @@ class SlopeAxis extends Axis {
             .append("text")
             .attr("class", "axis-label")
             .text(annotation.name)
-            .attr("fill", "#fff")
             .attr("x", annotation.offset.left)
-            .attr("y", annotation.offset.top - 20)
+            .attr("y", annotation.offset.top + this.height + 40)
+
+        console.log(this.height)
     }
 }
 
@@ -137,12 +142,12 @@ class SlopeCharacter extends Character {
 
     protected annotationY(annotation:Annotation):number {
         let pos = this.annotationPosition(annotation.anchor)
-       return this.yScale(this.data[pos][this.y]) + 5 + annotation.offset.top
+       return this.yScale(this.data[pos][this.y]) + 3 + annotation.offset.top
     }
 
     protected annotationX(annotation:Annotation):number {
         let pos = this.annotationPosition(annotation.anchor)
-        return this.xScale(this.data[pos][this.x])+5 
+        return this.xScale(this.data[pos][this.x]) + 5 + annotation.offset.left
     }
 
 

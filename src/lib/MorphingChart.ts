@@ -78,7 +78,7 @@ export class MorphingChart implements Drawable {
 
     characterStage():d3.Selection<any, any, any, any> {
         return this.stage.append("g")
-            .attr("transform", `translate(${this.design.margin}, ${this.design.margin})`)
+            .attr("transform", `translate(${this.design.margin.left}, ${this.design.margin.top})`)
     }
 
     atPosition(position:number) {

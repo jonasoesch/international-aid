@@ -10,7 +10,7 @@ import {ChartDefinition,
     CharacterDefinition, 
     AnnotationDefinition,
     Named} from "./Definitions"
-import {buildMapWithName, throwIfNotSet, valOrDefault, throwIfEmpty} from "./Helpers"
+import {buildMapWithName, throwIfNotSet, valOrDefault, throwIfEmpty, overwriteDefaults} from "./Helpers"
 
 
 interface Scale extends Function {
@@ -31,6 +31,7 @@ export abstract class Chart implements Drawable {
     constructor(definition:ChartDefinition) {
         this.validateDefinition(definition)
         this.name = throwIfNotSet(definition.name, "There is no chart name")
+        this.design = overwriteDefaults(this.design, definition.design)
         this.initStage()
         this.buildChart(definition)
     }
@@ -136,7 +137,7 @@ export abstract class Chart implements Drawable {
     }
 
     get innerWidth() {
-        return this.width - (2*this.design.margin) 
+        return this.width - (this.design.margin.left + this.design.margin.right) 
     }
 
     get height() {
@@ -146,7 +147,7 @@ export abstract class Chart implements Drawable {
     }
 
     get innerHeight() {
-        return this.height - (2*this.design.margin)
+        return this.height - (this.design.margin.top + this.design.margin.bottom)
     }
 
 
@@ -172,7 +173,7 @@ export abstract class Chart implements Drawable {
 
     axisStage(name:string):d3.Selection<any, any, any, any> {
         return this.stage.append("g")
-        .attr("transform", `translate(${this.design.margin}, ${this.design.margin})`)
+        .attr("transform", `translate(${this.design.margin.left}, ${this.design.margin.top})`)
         .append("g")
         .attr("id", `axis-${name}`)
     }
@@ -180,7 +181,7 @@ export abstract class Chart implements Drawable {
     characterStage(name:string):d3.Selection<any, any, any, any> {
         return this.stage.append("g")
         .attr("id", `character-${name}`)
-        .attr("transform", `translate(${this.design.margin}, ${this.design.margin})`) 
+        .attr("transform", `translate(${this.design.margin.left}, ${this.design.margin.top})`) 
     }
 
     abstract buildAxis(axis:AxisDefinition):Axis

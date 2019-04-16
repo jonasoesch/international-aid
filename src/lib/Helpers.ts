@@ -30,3 +30,26 @@ export function throwIfEmpty<T>(value:T[], msg?:string) {
 }
 
 
+export function overwriteDefaults(defaults:any, override:any):any {
+    console.log(defaults)
+    let keys = []
+
+    if(override === null || override === undefined || override == {}) {
+      return defaults
+    }
+
+    for(let k in override) {
+        if(override.hasOwnProperty(k))  {
+            keys.push(k) 
+        }
+    }
+    if(keys.length === 0) {
+        return override 
+    }
+    else {
+        keys.forEach( k => {
+            defaults[k] = overwriteDefaults(defaults[k], override[k])
+        })
+        return defaults
+    }
+}

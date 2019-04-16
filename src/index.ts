@@ -28,6 +28,18 @@ Promise.all([ rise(), ranking(),
             {from: "France", to: "France"},
             {from: "United Kingdom", to: "United Kingdom"},
             {from: "Netherlands", to: "Netherlands"},
+            {from: "Canada", to: "Canada"},
+            {from: "Norway", to: "Norway"},
+            {from: "Norway", to: "Norway"},
+            {from: "Australia", to: "Australia"},
+            {from: "Sweden", to: "Sweden"},
+            {from: "Denmark", to: "Denmark"},
+            {from: "Switzerland", to: "Switzerland"},
+            {from: "Belgium", to: "Belgium"},
+            {from: "Kuwait", to: "Kuwait"},
+            {from: "United Arab Emirates", to: "United Arab Emirates"},
+            {from: "Saudi Arabia", to: "Saudi Arabia"},
+            {from: "Others", to: "Others"},
         ]
     })
 
@@ -38,6 +50,7 @@ Promise.all([ rise(), ranking(),
         {from: 100, to:300, draw:riseRanking},
         {from: 300, to:600, draw:ranking},
     ]
+    rise.draw()
     new Director(steps)
          
 })

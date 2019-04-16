@@ -4,7 +4,8 @@
 body {
     height: 3000px;
     background-color: #D9CFC3;
-    font-family: "Fira Sans";
+    font-family: "Fira Sans", "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 .Graph {
@@ -22,18 +23,24 @@ body {
 
 
 
-.axis line {
-    stroke: #fff;
+.tick line {
+    display: none;
+    stroke: #57534E;
+    width: 100%;
 }
 
 .axis path {
-    display: none
+    display: none;
+    stroke: #57534E;
 }
 
 .tick text {
-    font-family: "Fira Sans";
-    color: #fff;
+    color: #57534E;
     font-size: 15px;
+}
+
+.axis-label {
+    fill: #57534E;
 }
 
 .axis-label {

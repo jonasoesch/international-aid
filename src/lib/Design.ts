@@ -1,51 +1,20 @@
 export class Design {
 
-    _fontColor:string = "#222"
-    _font:string = "Fira Sans"
-    _fontSizing:number = 1
-
-    _lineWeight = 3
-    _margin = 80
-
-    get fontColor() {
-        return this._fontColor
+    font = {
+        color: "#222",
+        face:"Fira Sans",
+        sizing: 1
     }
 
-    set fontColor(color:string) {
-        this._fontColor = color 
+    margin = {
+        left: 80,
+        top: 80,
+        right: 80,
+        bottom: 80
     }
 
-    get font() {
-        return this._font 
+    line = {
+        color: "#222",
+        weight: 3
     }
-
-    set font(font:string) {
-        this._font = font 
-    }
-
-
-    get fontSizing() {
-        return this._fontSizing 
-    }
-
-    set fontSizing(size:number) {
-        this._fontSizing = size 
-    }
-
-    get lineWeight() {
-        return this._lineWeight
-    }
-
-    set lineWeight(lineWeight:number) {
-        this._lineWeight = lineWeight 
-    }
-
-    get margin() {
-        return this._margin || 80
-    }
-
-    set margin(margin:number) {
-        this._margin = margin 
-    }
-
 }

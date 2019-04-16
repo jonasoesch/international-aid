@@ -18,6 +18,7 @@ export interface ChartDefinition extends Named {
     
     // Annotations will be drawn as a title to the chart
     annotations?: AnnotationDefinition[]
+    design?:DesignDefinition
 }
 
 export interface AxisDefinition extends Named {
@@ -81,4 +82,8 @@ export interface StepDefinition {
     from:number
     to:number
     draw:Drawable
+}
+
+export interface DesignDefinition {
+    margin?: {left?:number, top?:number, right?:number, bottom?:number}
 }

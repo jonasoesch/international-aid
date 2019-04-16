@@ -26,7 +26,7 @@ export function rise():Promise<any> {
                     domain: [0, 30],
                     ticks: [5,10,15,20,25,30],
                     annotations: [
-                    {name: "70s"}
+                    {name: "70s", offset: {left: 15, top: 0}}
                     ]
                 },
                 {
@@ -34,7 +34,7 @@ export function rise():Promise<any> {
                     field: "amount",
                     domain: [0, 300],
                     annotations: [
-                    {name: "00s"}
+                    {name: "00s", offset: {left: -10, top: 0}}
                     ]
                 },
                 {
@@ -52,125 +52,128 @@ export function rise():Promise<any> {
                 characters: [
                 {
                     name: "Australia",
-                    color: "#000",
+                    color: "#57534E",
                     annotations: [ 
-                        {name: "Australia"}
+                        {name: "Australia", offset: {top: 0, left: 120}}
                     ]
                 },
                 {
                     name: "Belgium",
-                    color: "#000",
+                    color: "#57534E",
                     annotations: [ 
-                        {name: "Belgium"}
+                        {name: "Belgium", offset: {left: 130, top: 0}}
                     ]
                 },
                 {
                     name: "Canada",
-                    color: "#000",
+                    color: "#57534E",
                     annotations: [ 
-                        {name: "Canada"}
+                        {name: "Canada", offset: {top: -3, left: 0}}
                     ]
                 },
                 {
                     name: "Denmark",
-                    color: "#000",
+                    color: "#58768D",
                     annotations: [ 
                         {name: "Denmark"}
                     ]
                 },
                 {
                     name: "Kuwait",
-                    color: "#000",
+                    color: "#D66F61",
                     annotations: [ 
-                        {name: "Kuwait"}
+                        {name: "Kuwait", offset: {left: 0, top: 4}}
                     ]
                 },
                 {
                     name: "Norway",
-                    color: "#000",
+                    color: "#58768D",
                     annotations: [ 
                         {name: "Norway"}
                     ]
                 },
                 {
                     name: "Saudi Arabia",
-                    color: "#000",
+                    color: "#D66F61",
                     annotations: [ 
-                        {name: "Saudi Arabia"}
+                        {name: "Saudi Arabia", offset: {left: 50, top: -5}}
                     ]
                 },
                 {
                     name: "Sweden",
-                    color: "#000",
+                    color: "#57534E",
                     annotations: [ 
-                        {name: "Sweden"}
+                        {name: "Sweden", offset: {left: 60, top: 0}}
                     ]
                 },
                 {
                     name: "Switzerland",
-                    color: "#000",
+                    color: "#57534E",
                     annotations: [ 
-                        {name: "Switzerland"}
+                        {name: "Switzerland", offset: {left: 60, top: 0}}
                     ]
                 },
                 {
                     name: "United Arab Emirates",
-                    color: "#000",
+                    color: "#D66F61",
                     annotations: [ 
-                        {name: "Emirates"}
+                        {name: "Emirates", offset: {left: 130, top: -4}}
                     ]
                 },
                 { 
                     name: "United States",
-                    color: "#0038A6",
+                    color: "#57534E",
                     annotations: [
-                        {name: "USA", offset: {left: 0, top: 0}} 
+                        {name: "USA"} 
                     ]
                 },
                 { 
                     name: "Japan",
-                    color: "#E72440",
+                    color: "#57534E",
                     annotations: [
-                        {name: "Japan", anchor: "first", offset: {left:0, top: 5}}
+                        {name: "Japan"}
                     ]
                 },
                 { 
                     name: "Germany",
-                    color: "#FFD500",
+                    color: "#57534E",
                     annotations: [
-                        {name: "Germany", offset: {left:0, top: -10}}
+                        {name: "Germany", offset: {top: -5, left: 0}}
                     ]
                 },
                 { 
                     name: "France",
-                    color: "#fff",
+                    color: "#58768D",
                     annotations: [
-                        {name: "France", offset: {left:0, top: 2}}
+                        {name: "France"}
                     ],
                 },
                 { 
                     name: "United Kingdom",
-                    color: "#9B9B9B",
+                    color: "#57534E",
                     annotations: [
-                        {name: "UK", offset: {left:0, top: -8}}
+                        {name: "UK"}
                     ],
                 },
                 { 
                     name: "Netherlands",
-                    color: "#9B9B9B",
+                    color: "#58768D",
                     annotations: [
-                        {name: "Netherlands", offset: {left:0, top: 0}}
+                        {name: "Netherlands"}
                     ]
                 },
                 { 
                     name: "Others",
-                    color: "#000",
+                    color: "#58768D",
                     annotations: [
-                        {name: "All others", offset: {left:0, top: -10}}
+                        {name: "All others"}
                     ]
                 }
 
                 ]
+            },
+            design: {
+                margin: {right: 200}
             }
         }
 
