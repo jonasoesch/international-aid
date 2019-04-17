@@ -211,8 +211,10 @@ export abstract class Chart implements Drawable {
 
 
     draw() {
+        this.stage.selectAll(".chart-title").remove()
         this.drawAxes()
         this.drawCharacters()
+        this.drawAnnotations()
         this.unhide()
     }
 
@@ -222,7 +224,41 @@ export abstract class Chart implements Drawable {
     protected drawCharacters() {
         this.characters.forEach(c => {c.draw()})
     }
-    protected drawDescription() {}
+
+    protected drawAnnotations() {
+        this.annotations.forEach(a => this.drawAnnotation(a))
+    }
+
+    protected drawAnnotation(annotation:Annotation) {
+        let text = this.stage.append("g") 
+            .attr("class", "chart-title")
+            .attr("transform", `translate(${this.design.margin.left
+                    +annotation.offset.left},${this.design.margin.top /3
+                    +annotation.offset.top})`)
+            .append("text")
+            .style("font-size", `${this.design.font.size*1.2}px`)
+
+            text.selectAll("tspan")
+                .data(this.wordWrap(annotation.name, 11))
+                .enter()
+                .append("tspan")
+                .attr("y", (d, i) => i*20 )
+                .attr("x", 0)
+                .text( d => d )
+    }
+
+    protected wordWrap(label:string, lineLength:number):string[] {
+        let words = label.split(" ")
+        let len = Math.ceil(words.length / lineLength)
+        let res = []
+        for(let i = 0; i < len; i++) {
+                res.push(words.slice(i*lineLength, (i+1)*lineLength).join("  "))
+        }
+        return res
+    }
+
+
+
 
     /**
      * Hide the whole graph
@@ -262,6 +298,7 @@ export abstract class Chart implements Drawable {
     set characters(chars:Map<string, Character>) {this._characters = chars}
     get characters() {return this._characters}
     set annotations(annot:Map<string, Annotation>) {this._annotations = annot}
+    get annotations() {return this._annotations}
 
 
 }

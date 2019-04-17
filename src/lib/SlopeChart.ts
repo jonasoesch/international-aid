@@ -70,9 +70,16 @@ class SlopeAxis extends Axis {
             .attr("class", "axis-label")
             .text(annotation.name)
             .attr("x", annotation.offset.left)
-            .attr("y", annotation.offset.top + this.height + 40)
+            .attr("y", annotation.offset.top + this.height * this.annotationPosition(annotation.anchor) + 40)
 
-        console.log(this.height)
+    }
+
+
+    protected annotationPosition(pos:(string|number)):number {
+        if(pos === "start") {pos = 0}
+        if(pos === "end") {pos = 1}
+        if(typeof(pos) === "string") {pos = 0} // Users mistake
+        return pos
     }
 }
 
@@ -152,8 +159,8 @@ class SlopeCharacter extends Character {
 
 
     protected annotationPosition(pos:(string|number)):number {
-        if(pos === "first") {pos = 0}
-        if(pos === "last") {pos = this.data.length -1}
+        if(pos === "start") {pos = 0}
+        if(pos === "end") {pos = this.data.length -1}
         if(typeof(pos) === "string") {pos = 0} // Users mistake
         return pos
     }

@@ -23,7 +23,7 @@ export function ranking():Promise<any> {
             data: dd,
             annotations: [{
                 name: "Changes in the major donors of international aid since the between the seventies and the noughties",
-            }],
+            offset: {left: -20}}],
             axes: [
                 {
                     name: "from",

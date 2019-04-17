@@ -7,7 +7,7 @@ export class Annotation {
     constructor(definition:AnnotationDefinition) {
         this.name = definition.name
         this.offset = overwriteDefaults({top: 0, left: 0}, definition["offset"])
-        this.anchor = valOrDefault(definition["anchor"], "last") 
+        this.anchor = valOrDefault(definition["anchor"], "end") 
     }
 
 }

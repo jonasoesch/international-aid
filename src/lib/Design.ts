@@ -3,7 +3,7 @@ export class Design {
     font = {
         color: "#222",
         face:"Fira Sans",
-        sizing: 1
+        size: 12
     }
 
     margin = {
