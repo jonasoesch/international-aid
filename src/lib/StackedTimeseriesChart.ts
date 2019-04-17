@@ -3,23 +3,54 @@ import {Chart} from "./Chart"
 import {Axis} from "./Axis"
 import {Character} from "./Character"
 import {Annotation} from "./Annotation"
-import {AxisDefinition, CharacterDefinition} from "./Definitions"
-import {throwIfNotSet, valOrDefault, throwIfEmpty} from "./Helpers"
+import {AxisDefinition, CharacterDefinition, ChartDefinition} from "./Definitions"
+import {throwIfNotSet, valOrDefault, throwIfEmpty, buildMapWithName} from "./Helpers"
 
 
 export class StackedTimeseriesChart extends Chart {
+
     buildAxis(axis:AxisDefinition):StackedTimeseriesAxis {
         let s = this.axisStage(axis.name)
         return new StackedTimeseriesAxis(axis, s, this.innerWidth, this.innerHeight)
     }
 
+
     buildCharacter(chara:CharacterDefinition):StackedTimeseriesCharacter {
         let stage = this.characterStage(throwIfNotSet(chara.name, "Character has no name"))
         let data = this.data.filter( (d:any) => d[chara.field] === chara.name ) 
+
+
         throwIfEmpty(data, `There is no data for character ${chara.name}`)
         let character =  new StackedTimeseriesCharacter(chara, stage, data, this.axes.get("y"), this.axes.get("x"))
         return character
     }
+
+    buildChart(def:ChartDefinition) {
+        super.buildChart(def) 
+        this.updateData()
+    }
+
+
+    private updateData() {
+        let previousCharacter:any = null
+        this.characters.forEach(c => {
+            c.data.forEach((d2:any) => {
+                d2["min"] = this.characterMaxOrZero(previousCharacter, 
+                    (d1:any) => {return d1["year"] === d2.year})
+                d2["max"] = this.characterMaxOrZero(previousCharacter, 
+                    (d1:any) => {return d1["year"] === d2.year}) + d2.donations
+            })
+            previousCharacter = c
+        })
+    }
+
+    private characterMaxOrZero(c:any, accessor:Function) {
+        if(c === null) {return 0}
+        if("data" in c) { 
+            return c.data.filter(accessor)[0]["max"]
+        }
+    }
+
 
 }
 
@@ -27,34 +58,29 @@ class StackedTimeseriesAxis extends Axis {
     defineScale(domain:(number[]|string[]|Date[])) {
         if(this.name === "y") {
             return d3.scaleLinear()
-                    .domain((domain as number[]).reverse())
-                    .range([0, this.height])
+                .domain((domain as number[]).reverse())
+                .range([0, this.height])
         }
         if(this.name === "x") {
             return d3.scaleTime()
-                    .domain((domain as Date[]))
-                    .range([0, this.width])
+                .domain((domain as Date[]))
+                .range([0, this.width])
         }
     }
 
     draw() {
         let axis:d3.Axis<number[]> 
-        this.stage.selectAll("*").remove()
-        if(this.name === "from") {axis = d3.axisLeft(this.scale).tickArguments([6]);}
-        if(this.name === "to") {axis = d3.axisRight(this.scale).tickArguments([6]);}
+            this.stage.selectAll("*").remove()
+        if(this.name === "y") {axis = d3.axisLeft(this.scale).tickArguments([6]);}
+        if(this.name === "x") {axis = d3.axisBottom(this.scale).tickArguments([6]);}
         if(this.ticks) {axis.tickValues(this.ticks)}
-        if(this.name === "from") {
-            this.stage
-                .attr("class", "axis")
-                .call(throwIfNotSet(axis, "Axis name needs to be either 'from' or 'to'"))
-        }
-        if(this.name === "to") {
-            this.stage.attr("transform", `translate(${this.width}, 0)`) 
-        }
+        this.stage
+            .attr("class", "axis")
+            .call(throwIfNotSet(axis, "Axis name needs to be either 'x' or 'y'"))
 
-        this.stage.selectAll(".tick line")
-            .attr("x2", this.width)
-            .attr("stroke-dasharray", 4)
+        if(this.name === "x") {
+            this.stage.attr("transform", `translate(0, ${this.height})`) 
+        }
 
         this.drawAnnotations()
 
@@ -127,7 +153,6 @@ class StackedTimeseriesCharacter extends Character {
             .append("text")
             .text(annotation.name)
             .attr("fill", this.color)
-            //.attr("fill", this.lightOrDarkBg(this.color, "#fff", "#000"))
             .attr("y", this.annotationY(annotation))
             .attr("x",this.annotationX(annotation))
     }
@@ -137,8 +162,8 @@ class StackedTimeseriesCharacter extends Character {
 
         return d3.area()
             .x((d:any, i:number) => this.xScale(d[this.x]))
-            .y0((d:any) => this.yScale(d[this.y]))
-            .y1((d:any) => this.yScale(0))
+            .y0((d:any) => this.yScale(d["max"]))
+            .y1((d:any) => this.yScale(d["min"]))
     }
 
     get path() {
@@ -149,7 +174,7 @@ class StackedTimeseriesCharacter extends Character {
 
     protected annotationY(annotation:Annotation):number {
         let pos = this.annotationPosition(annotation.anchor)
-       return this.yScale(this.data[pos][this.y]) + 3 + annotation.offset.top
+        return this.yScale(this.data[pos]["max"]) + 3 + annotation.offset.top
     }
 
     protected annotationX(annotation:Annotation):number {

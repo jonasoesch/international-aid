@@ -29,7 +29,7 @@ export function newKids():Promise<any> {
                 {
                     name: "x",
                     field: "year",
-                    domain: [Date.parse("1990-01-01"), Date.parse("2013-01-01")]
+                    domain: [Date.parse("1962-01-01"), Date.parse("2013-01-01")]
                 }
             ],
             cast:

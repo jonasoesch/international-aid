@@ -31,7 +31,7 @@ export function newKids():Promise<any> {
                 {
                     name: "x",
                     field: "year",
-                    domain: [Date.parse("1990-01-01"), Date.parse("2013-01-01")]
+                    domain: [Date.parse("1960-01-01"), Date.parse("2013-01-01")]
                 }
             ],
             cast:
@@ -44,14 +44,14 @@ export function newKids():Promise<any> {
                 characters: [ 
                     {
                         name: "old",
-                        color: "black",
+                        color: "#57534E",
                         annotations: [
                             {name: "Old donors"}
                         ]
                     },
                     {
                         name: "new",
-                        color: "blue",
+                        color: "#58768D",
                         annotations: [
                             {name: "New donors" }
                         ]
