@@ -78,9 +78,9 @@ Promise.all([ rise(), ranking(), newKids()
         {from: 100, to:300, draw:riseRanking},
         {from: 300, to:600, draw:ranking},
         {from: 600, to:800, draw:rankingNewKids},
-        {from: 800, to:1200, draw:newKids},
+        {from: 800, to:10200, draw:newKids},
     ]
-    newKids.draw()
-    new Director(steps)
+    let d = new Director(steps)
+    d.drawAll(0)
          
 })

@@ -36,7 +36,7 @@ body {
 
 .tick text {
     color: #57534E;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .axis-label {
@@ -44,7 +44,7 @@ body {
 }
 
 .axis-label {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
 }
 

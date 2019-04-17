@@ -132,7 +132,7 @@ class SlopeCharacter extends Character {
 
     protected annotationX(annotation:Annotation):number {
         let pos = this.annotationPosition(annotation.anchor)
-        return this.xScale(this.data[pos][this.x]) + 5 + annotation.offset.left
+        return this.xScale(this.data[pos][this.x]) + 5 + annotation.offset.left 
     }
 
 

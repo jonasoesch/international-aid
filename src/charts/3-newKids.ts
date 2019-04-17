@@ -17,21 +17,21 @@ export function newKids():Promise<any> {
             name: "newKids",
             data: dd,
             annotations: [{
-                name: "Over time, more and more donations have been coming from countries that where not previously donors",
+                name: "Over time, more and more donations have been coming from countries who were not previously donors",
             }],
             axes: [
                 {
                     name: "y",
                     field: "donations",
-                    domain: [0,1],
+                    domain: [0,100],
                     annotations: [
-                        {name: "Dontations over time"}
+                        {name: "Share of donations over time"}
                     ]
                 },
                 {
                     name: "x",
                     field: "year",
-                    domain: [Date.parse("1960-01-01"), Date.parse("2013-01-01")]
+                    domain: [Date.parse("1975-01-01"), Date.parse("2013-01-01")]
                 }
             ],
             cast:

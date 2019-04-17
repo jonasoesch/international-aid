@@ -89,7 +89,7 @@ class StackedTimeseriesAxis extends Axis {
             .append("text")
             .attr("class", "axis-label")
             .text(annotation.name)
-            .attr("x", annotation.offset.left)
+            .attr("x", annotation.offset.left + 200)
             .attr("y", annotation.offset.top + this.height * this.annotationPosition(annotation.anchor) + 40)
     }
 
@@ -147,7 +147,7 @@ class StackedTimeseriesCharacter extends Character {
 
     protected annotationY(annotation:Annotation):number {
         let pos = this.annotationPosition(annotation.anchor)
-        return this.yScale(this.data[pos]["max"]) + 3 + annotation.offset.top
+        return this.yScale(this.data[pos]["max"]) + 10 + annotation.offset.top
     }
 
     protected annotationX(annotation:Annotation):number {
