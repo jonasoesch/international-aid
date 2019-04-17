@@ -15,22 +15,47 @@ export abstract class Character {
     protected annotations:Annotation[]
     protected stage:d3.Selection<any, any, any, any>
 
-    constructor(charDef:CharacterDefinition, 
-                data:object[],
-                stage:d3.Selection<any, any, any, any>,
-                ) {
-        this.name = charDef.name
-        this.data = throwIfEmpty(data, `No data for character ${this.name}`)
-        this.color = charDef.color
-        this.stage = stage
-        this.annotations = valOrDefault(this.buildAnnotations(charDef.annotations), [])
-    }
+        constructor(charDef:CharacterDefinition, 
+            data:object[],
+            stage:d3.Selection<any, any, any, any>,
+        ) {
+            this.name = charDef.name
+            this.data = throwIfEmpty(data, `No data for character ${this.name}`)
+            this.color = charDef.color
+            this.stage = stage
+            this.annotations = valOrDefault(this.buildAnnotations(charDef.annotations), [])
+        }
 
     buildAnnotations(defs:AnnotationDefinition[]):Annotation[] {
         return defs.map(d => new Annotation(d)) 
     }
 
-    public abstract draw():void
-    public abstract get path():string 
-    public abstract get label():{name:string, x:number, y:number}
+
+    drawAnnotations() {
+        if(this.annotations.length > 0) {
+            this.annotations.forEach(a => this.drawAnnotation(a)) 
+        }
+    }
+    abstract drawAnnotation(annotation:Annotation):void
+
+        public abstract draw():void
+    protected abstract pathGenerator():Function
+
+    get path() {
+        throwIfEmpty(this.data, `No data for ${this.name}`)
+        return this.pathGenerator()(this.data)
+    }
+
+
+    get label() {
+        let annot = this.annotations[0] 
+        return {
+            name: annot.name,
+            x: this.annotationX(annot),
+            y: this.annotationY(annot)
+        }
+    }
+
+    protected abstract annotationY(annotation:Annotation):number
+    protected abstract annotationX(annotation:Annotation):number
 }

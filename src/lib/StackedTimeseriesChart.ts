@@ -19,7 +19,6 @@ export class StackedTimeseriesChart extends Chart {
         let stage = this.characterStage(throwIfNotSet(chara.name, "Character has no name"))
         let data = this.data.filter( (d:any) => d[chara.field] === chara.name ) 
 
-
         throwIfEmpty(data, `There is no data for character ${chara.name}`)
         let character =  new StackedTimeseriesCharacter(chara, stage, data, this.axes.get("y"), this.axes.get("x"))
         return character
@@ -81,13 +80,8 @@ class StackedTimeseriesAxis extends Axis {
         if(this.name === "x") {
             this.stage.attr("transform", `translate(0, ${this.height})`) 
         }
-
         this.drawAnnotations()
 
-    }
-
-    drawAnnotations() {
-        this.annotations.forEach(a => this.drawAnnotation(a)) 
     }
 
     drawAnnotation(annotation:any) {
@@ -97,16 +91,9 @@ class StackedTimeseriesAxis extends Axis {
             .text(annotation.name)
             .attr("x", annotation.offset.left)
             .attr("y", annotation.offset.top + this.height * this.annotationPosition(annotation.anchor) + 40)
-
     }
 
 
-    protected annotationPosition(pos:(string|number)):number {
-        if(pos === "start") {pos = 0}
-        if(pos === "end") {pos = 1}
-        if(typeof(pos) === "string") {pos = 0} // Users mistake
-        return pos
-    }
 }
 
 
@@ -141,13 +128,6 @@ class StackedTimeseriesCharacter extends Character {
         this.drawAnnotations()
     }
 
-    drawAnnotations() {
-        if(this.annotations.length > 0) {
-            this.annotations.forEach(a => this.drawAnnotation(a)) 
-        }
-    }
-
-
     drawAnnotation(annotation:any) {
         this.stage
             .append("text")
@@ -159,18 +139,11 @@ class StackedTimeseriesCharacter extends Character {
 
 
     pathGenerator() {
-
         return d3.area()
             .x((d:any, i:number) => this.xScale(d[this.x]))
             .y0((d:any) => this.yScale(d["max"]))
             .y1((d:any) => this.yScale(d["min"]))
     }
-
-    get path() {
-        throwIfEmpty(this.data, `No data for ${this.name}`)
-        return this.pathGenerator()(this.data)
-    }
-
 
     protected annotationY(annotation:Annotation):number {
         let pos = this.annotationPosition(annotation.anchor)
@@ -182,7 +155,6 @@ class StackedTimeseriesCharacter extends Character {
         return this.xScale(this.data[pos][this.x]) + 5 + annotation.offset.left
     }
 
-
     protected annotationPosition(pos:(string|number)):number {
         if(pos === "start") {pos = 0}
         if(pos === "end") {pos = this.data.length -1}
@@ -192,13 +164,5 @@ class StackedTimeseriesCharacter extends Character {
 
 
 
-    get label() {
-        let annot = this.annotations[0] 
-        return {
-            name: annot.name,
-            x: this.annotationX(annot),
-            y: this.annotationY(annot)
-        }
-    }
 
 }

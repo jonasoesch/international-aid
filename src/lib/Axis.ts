@@ -48,6 +48,19 @@ export abstract class Axis {
     abstract draw():void
 
 
+    drawAnnotations() {
+        this.annotations.forEach(a => this.drawAnnotation(a)) 
+    }
+    abstract drawAnnotation(a:Annotation):void
+
+    protected annotationPosition(pos:(string|number)):number {
+        if(pos === "start") {pos = 0}
+        if(pos === "end") {pos = 1}
+        if(typeof(pos) === "string") {pos = 0} // Users mistake
+        return pos
+    }
+
+
     set annotations(annos:Map<string, Annotation>) {this._annotations = annos}
     get annotations() {return this._annotations}
     set scale(scale:d3.AxisScale<any>) {this._scale = scale}

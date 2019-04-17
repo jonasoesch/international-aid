@@ -60,9 +60,6 @@ class SlopeAxis extends Axis {
 
     }
 
-    drawAnnotations() {
-        this.annotations.forEach(a => this.drawAnnotation(a)) 
-    }
 
     drawAnnotation(annotation:any) {
         this.stage
@@ -74,13 +71,6 @@ class SlopeAxis extends Axis {
 
     }
 
-
-    protected annotationPosition(pos:(string|number)):number {
-        if(pos === "start") {pos = 0}
-        if(pos === "end") {pos = 1}
-        if(typeof(pos) === "string") {pos = 0} // Users mistake
-        return pos
-    }
 }
 
 
@@ -115,13 +105,6 @@ class SlopeCharacter extends Character {
         this.drawAnnotations()
     }
 
-    drawAnnotations() {
-        if(this.annotations.length > 0) {
-            this.annotations.forEach(a => this.drawAnnotation(a)) 
-        }
-    }
-
-
     drawAnnotation(annotation:any) {
         this.stage
             .append("text")
@@ -139,11 +122,6 @@ class SlopeCharacter extends Character {
             .x((d:any, i:number) => this.xScale(d[this.x]))
             .y0((d:any) => this.yScale(d[this.y]))
             .y1((d:any) => this.yScale(d[this.y])-2)
-    }
-
-    get path() {
-        throwIfEmpty(this.data, `No data for ${this.name}`)
-        return this.pathGenerator()(this.data)
     }
 
 
@@ -165,15 +143,5 @@ class SlopeCharacter extends Character {
         return pos
     }
 
-
-
-    get label() {
-        let annot = this.annotations[0] 
-        return {
-            name: annot.name,
-            x: this.annotationX(annot),
-            y: this.annotationY(annot)
-        }
-    }
 
 }
