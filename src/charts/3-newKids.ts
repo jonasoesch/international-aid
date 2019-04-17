@@ -1,34 +1,31 @@
 import * as d3 from "d3"
-import {TimeseriesChart} from "../lib/TimeseriesChart"
+import {StackedTimeseriesChart} from "../lib/StackedTimeseriesChart"
 
 export function newKids():Promise<any> {
-    return d3.csv("data/newKids.csv").then((data) => {
+    return d3.csv("data/3-newKids.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {
-            donor: d.donor,
-            year: Date.parse(`${d.year}-01-01`),
-            donations: parseInt(d.amount)
-        }})
+                group: d.variable,
+                year: Date.parse(`${d.year}`),
+                donations: parseFloat(d.value)
+            }})
 
-        // TODO: Correct definition
+        console.log(dd)
+
         let a = {
             name: "newKids",
             data: dd,
             annotations: [{
-                name: "Blabla",
-                offset: {
-                    left: 20,
-                    top: 20
-                }
+                name: "Over time, more and more donations have been coming from countries that where not previously donors",
             }],
             axes: [
                 {
                     name: "y",
                     field: "donations",
-                    domain: [0,8000000000],
+                    domain: [0,1],
                     annotations: [
-                        {name: "70s", offset: {left: 0, top: 0}}
+                        {name: "Dontations over time"}
                     ]
                 },
                 {
@@ -39,60 +36,33 @@ export function newKids():Promise<any> {
             ],
             cast:
             {
-                field: "donor",
+                field: "group",
                 axes: {
                     y: "y",
                     x: "x"
                 },
-                characters: [
-                { 
-                    name: "Taiwan",
-                    color: "red",
-                    annotations: [
-                        {name: "Taiwan", offset: {left: 0, top: 0}} 
-                    ]
-                },
-                { 
-                    name: "India",
-                    color: "blue",
-                    annotations: [
-                        {name: "India", offset: {left:0, top: 0}}
-                    ]
-                },
-                { 
-                    name: "Ireland",
-                    color: "black",
-                    annotations: [
-                        {name: "Ireland", offset: {left:0, top: 0}}
-                    ]
-                },
-                { 
-                    name: "Greece",
-                    color: "black",
-                    annotations: [
-                        {name: "Greece", offset: {left:0, top: 0}}
-                    ],
-                },
-                { 
-                    name: "Korea",
-                    color: "black",
-                    annotations: [
-                        {name: "Korea", offset: {left:0, top: 0}}
-                    ],
-                },
-                { 
-                    name: "Others",
-                    color: "black",
-                    annotations: [
-                        {name: "Others", offset: {left:0, top: 0}}
-                    ]
-                }
+                characters: [ 
+                    {
+                        name: "old",
+                        color: "black",
+                        annotations: [
+                            {name: "Old donors"}
+                        ]
+                    },
+                    {
+                        name: "new",
+                        color: "blue",
+                        annotations: [
+                            {name: "New donors" }
+                        ]
+                    }
                 ]
             }
         }
 
 
-        return new TimeseriesChart(a)
+        return new StackedTimeseriesChart(a)
     })
 }
+
 

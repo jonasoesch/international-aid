@@ -9,11 +9,12 @@ import {MorphingChartDefinition, StepDefinition} from "./lib/Definitions"
 import {MorphingChart} from "./lib/MorphingChart"
 import {Director} from "./lib/Director"
 
-Promise.all([ rise(), ranking(), 
+Promise.all([ rise(), ranking(), newKids()
 ]).then(charts => {
 
     let rise = charts[0]
     let ranking = charts[1]
+    let newKids = charts[2]
 
 
 
@@ -44,11 +45,40 @@ Promise.all([ rise(), ranking(),
     })
 
 
+        let rankingNewKids = new MorphingChart({
+        name: "rankingNewKids",
+        from: ranking,
+        to: newKids,
+        characters: [
+            {from: "United States", to: "old"},
+            {from: "Japan", to: "old"},
+            {from: "Germany", to: "old"},
+            {from: "France", to: "old"},
+            {from: "United Kingdom", to: "old"},
+            {from: "Netherlands", to: "old"},
+            {from: "Canada", to: "old"},
+            {from: "Norway", to: "old"},
+            {from: "Norway", to: "old"},
+            {from: "Australia", to: "old"},
+            {from: "Sweden", to: "old"},
+            {from: "Denmark", to: "old"},
+            {from: "Switzerland", to: "old"},
+            {from: "Belgium", to: "old"},
+            {from: "Kuwait", to: "old"},
+            {from: "United Arab Emirates", to: "old"},
+            {from: "Saudi Arabia", to: "old"},
+            {from: "Others", to: "old"},
+        ]
+    })
+
+
 
     let steps:StepDefinition[] = [
         {from: -200, to:100, draw:rise},
         {from: 100, to:300, draw:riseRanking},
         {from: 300, to:600, draw:ranking},
+        {from: 600, to:800, draw:rankingNewKids},
+        {from: 800, to:1200, draw:newKids},
     ]
     rise.draw()
     new Director(steps)

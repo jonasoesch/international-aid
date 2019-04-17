@@ -15,7 +15,6 @@ export function ranking():Promise<any> {
         }})
 
 
-        console.log(dd)
 
 
         let a = {

@@ -31,7 +31,6 @@ export function throwIfEmpty<T>(value:T[], msg?:string) {
 
 
 export function overwriteDefaults(defaults:any, override:any):any {
-    console.log(defaults)
     let keys = []
 
     if(override === null || override === undefined || override == {}) {

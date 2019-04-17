@@ -103,5 +103,9 @@ class TimeseriesCharacter extends Character {
         } 
     }
 
+    hide() {
+    
+    }
+
 }
 
