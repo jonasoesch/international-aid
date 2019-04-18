@@ -32,21 +32,23 @@ export class StackedTimeseriesChart extends Chart {
 
     private updateData() {
         let previousCharacter:any = null
+        let x = this.axes.get("x").field
+        let y = this.axes.get("y").field
         this.characters.forEach(c => {
             c.data.forEach((d2:any) => {
                 d2["min"] = this.characterMaxOrZero(previousCharacter, 
-                    (d1:any) => {return d1["year"] === d2.year})
+                    (d1:any) =>  {return d1[x] === d2[x]}, c)
                 d2["max"] = this.characterMaxOrZero(previousCharacter, 
-                    (d1:any) => {return d1["year"] === d2.year}) + d2.donations
+                    (d1:any) => {return d1[x] === d2[x]}, c) + d2[y]
             })
             previousCharacter = c
         })
     }
 
-    private characterMaxOrZero(c:any, accessor:Function) {
+    private characterMaxOrZero(c:any, accessor:Function, c2:any):number {
         if(c === null) {return 0}
-        if("data" in c) { 
-            return c.data.filter(accessor)[0]["max"]
+        if("data" in c) {
+               return c.data.filter(accessor)[0]["max"]
         }
     }
 

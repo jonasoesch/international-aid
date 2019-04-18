@@ -1,5 +1,5 @@
 import * as d3 from "d3"
-import {SlopeChart} from "../lib/SlopeChart"
+import {StackedTimeseriesChart} from "../lib/StackedTimeseriesChart"
 
 export function whoAreThey():Promise<any> {
     return d3.csv("data/4-whoAreThey.csv").then((data) => {
@@ -7,7 +7,7 @@ export function whoAreThey():Promise<any> {
         let dd:any = data.map(d => {
             return {
             donor: d.donor,
-            year: new Date(Date.parse(d.year)),
+            year: Date.parse(d.year),
             ratio: parseFloat(d.ratio)
         }})
 
@@ -16,98 +16,105 @@ export function whoAreThey():Promise<any> {
             name: "whoAreThey",
             data: dd,
             annotations: [{
-                name: "Blabla",
-                offset: {
-                    left: 20,
-                    top: 20
-                }
+                name: "Blabla"
             }],
             axes: [
                 {
-                    name: "from",
-                    field: "donations",
-                    domain: [0, 300],
+                    name: "y",
+                    field: "ratio",
+                    domain: [0, 1],
                     annotations: [
-                    {name: "70s", offset: {left: 0, top: -30}}
-                    ]
-                },
-                {
-                    name: "to",
-                    field: "donations",
-                    domain: [0, 300],
-                    annotations: [
-                    {name: "00s", offset: {left: 0, top: -30}}
+                    {name: "Ratio"}
                     ]
                 },
                 {
                     name: "x",
-                    domain: [0, 1]
-                }
+                    field: "year",
+                    domain: [Date.parse("1980-01-01"),Date.parse("2013-01-01")],
+                },
             ],
             cast:
             {
                 field: "donor",
                 axes: {
-                    y: "from"
+                    y: "y",
+                    x: "x"
                 },
                 characters: [
-                { 
-                    name: "United States",
-                    color: "#0038A6",
+                  { 
+                    name: "Liechtenstein",
+                    color: "#06410E",
                     annotations: [
-                        {name: "USA", offset: {left: 0, top: 0}} 
+                        {name: "Liechtenstein", offset: {left:0, top: 5}}
                     ]
                 },
                 { 
-                    name: "Japan",
-                    color: "#E72440",
+                    name: "Portugal",
+                    color: "#588D60",
                     annotations: [
-                        {name: "Japan", offset: {left:0, top: 5}}
+                        {name: "Portugal", offset: {left:0, top: 5}}
                     ]
                 },
                 { 
-                    name: "Germany",
-                    color: "#FFD500",
+                    name: "Spain",
+                    color: "#A45A58",
                     annotations: [
-                        {name: "Germany", offset: {left:0, top: -10}}
+                        {name: "Spain", offset: {left:0, top: 5}}
+                    ]
+                },
+
+                                    { 
+                    name: "Taiwan",
+                    color: "#D66F61",
+                    annotations: [
+                        {name: "Taiwan", offset: {left:0, top: -5}}
+                    ]
+                },
+                                                        { 
+                    name: "Others",
+                    color: "#58768D",
+                    annotations: [
+                        {name: "Others", offset: {left:0, top: 5}}
+                    ]
+                },
+                                    { 
+                    name: "Ireland",
+                    color: "#062D41",
+                    annotations: [
+                        {name: "Ireland", offset: {left:0, top: 5}}
                     ]
                 },
                 { 
-                    name: "France",
-                    color: "#fff",
+                    name: "Greece",
+                    color: "#4A2386",
                     annotations: [
-                        {name: "France", offset: {left:0, top: 2}}
-                    ],
+                        {name: "Greece", offset: {left: 0, top: -5}} 
+                    ]
                 },
                 { 
-                    name: "United Kingdom",
-                    color: "#9B9B9B",
+                    name: "India",
+                    color: "#8A61D6",
                     annotations: [
-                        {name: "UK", offset: {left:0, top: -8}}
-                    ],
+                        {name: "India", offset: {left:0, top: 5}}
+                    ]
                 },
+
                 { 
-                    name: "Netherlands",
-                    color: "#9B9B9B",
+                    name: "Korea",
+                    color: "#57534E",
                     annotations: [
-                        {name: "Netherlands", offset: {left:0, top: 0}}
+                        {name: "Korea", offset: {left:0, top: 5}}
                     ]
                 },
 
 
-                { 
-                    name: "All others",
-                    color: "#000",
-                    annotations: [
-                        {name: "All others", offset: {left:0, top: -10}}
-                    ]
-                }
+
 
                 ]
             }
         }
 
 
-        return new SlopeChart(a)
+        return new StackedTimeseriesChart(a)
     })
 }
