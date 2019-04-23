@@ -2,6 +2,7 @@ import * as d3 from 'd3'
 import {Logger} from './Logger'
 import {Drawable} from './Drawable'
 import {MorphingChart} from "./MorphingChart"
+import {FadingChart} from "./FadingChart"
 import {StepDefinition} from "./Definitions"
 
 
@@ -136,7 +137,7 @@ export class Director {
      **/
     private draw(graph:Drawable, howFar:number) {
             //this.logger.animation(graph.name, howFar)
-        if(graph instanceof MorphingChart) {
+        if(graph instanceof MorphingChart || graph instanceof FadingChart) {
             graph.atPosition(howFar).draw() 
         } else {
             graph.draw() 

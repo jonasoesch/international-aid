@@ -9,6 +9,7 @@ import {recieved} from "./charts/6-recieved"
 import {repaying} from "./charts/7-repaying"
 import {MorphingChartDefinition, StepDefinition} from "./lib/Definitions"
 import {MorphingChart} from "./lib/MorphingChart"
+import {FadingChart} from "./lib/FadingChart"
 import {Director} from "./lib/Director"
 
 Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey2(), whoAreThey()
@@ -113,22 +114,11 @@ Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         ]
     })
 
-        let newKidsWhoAreThey3 = new MorphingChart({
+        let newKidsWhoAreThey3 = new FadingChart({
         name: "newKidsWhoAreThey3",
         from: newKidsWhoAreThey2,
         to: whoAreThey,
-        characters: [
-            {from: "new", to: "India"},
-            {from: "new", to: "Greece"},
-            {from: "new", to: "Others"},
-            {from: "new", to: "Taiwan"},
-            {from: "new", to: "Ireland"},
-            {from: "new", to: "Korea"},
-            {from: "new", to: "Liechtenstein"},
-            {from: "new", to: "Portugal"},
-            {from: "new", to: "Spain"},
-        ]
-    })
+       })
 
 
 
@@ -141,7 +131,8 @@ Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         {from: 800, to:1000, draw:newKids},
         {from: 1000, to:1100, draw:newKidsWhoAreThey1},
         {from: 1100, to:1150, draw:newKidsWhoAreThey2},
-        {from: 1150, to:1500, draw:whoAreThey},
+        {from: 1150, to:1300, draw:newKidsWhoAreThey3},
+        //{from: 1200, to:1500, draw:whoAreThey},
     ]
     let d = new Director(steps)
          

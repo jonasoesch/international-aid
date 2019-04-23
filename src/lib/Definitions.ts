@@ -78,6 +78,12 @@ export interface MorphingCharacterDefinition {
     to:string
 }
 
+export interface FadingChartDefinition {
+    name:string
+    from:Chart
+    to:Chart
+}
+
 export interface StepDefinition {
     from:number
     to:number
