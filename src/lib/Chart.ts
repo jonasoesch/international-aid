@@ -226,7 +226,9 @@ export abstract class Chart implements Drawable {
     }
 
     protected drawAnnotations() {
-        this.annotations.forEach(a => this.drawAnnotation(a))
+        if(this.annotations) {
+            this.annotations.forEach(a => this.drawAnnotation(a))
+        }
     }
 
     protected drawAnnotation(annotation:Annotation) {

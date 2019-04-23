@@ -30,7 +30,7 @@ export function whoAreThey():Promise<any> {
                 {
                     name: "x",
                     field: "year",
-                    domain: [Date.parse("1980-01-01"),Date.parse("2013-01-01")],
+                    domain: [Date.parse("1981-01-01"),Date.parse("2013-01-01")],
                 },
             ],
             cast:
@@ -43,21 +43,21 @@ export function whoAreThey():Promise<any> {
                 characters: [
                   { 
                     name: "Liechtenstein",
-                    color: "#06410E",
+                    color: "#DD9B62",
                     annotations: [
-                        {name: "Liechtenstein", offset: {left:0, top: 5}}
+                        {name: "Liechtenstein", offset: {left:0, top: -8}}
                     ]
                 },
                 { 
                     name: "Portugal",
-                    color: "#588D60",
+                    color: "#D66F61",
                     annotations: [
-                        {name: "Portugal", offset: {left:0, top: 5}}
+                        {name: "Portugal", offset: {left:0, top: -5}}
                     ]
                 },
                 { 
                     name: "Spain",
-                    color: "#A45A58",
+                    color: "#7995AB",
                     annotations: [
                         {name: "Spain", offset: {left:0, top: 5}}
                     ]
@@ -65,45 +65,45 @@ export function whoAreThey():Promise<any> {
 
                                     { 
                     name: "Taiwan",
-                    color: "#D66F61",
+                    color: "#C093C7",
                     annotations: [
-                        {name: "Taiwan", offset: {left:0, top: -5}}
+                        {name: "Taiwan", offset: {left:0, top: -8}}
                     ]
                 },
                                                         { 
                     name: "Others",
-                    color: "#58768D",
+                    color: "#57534E",
                     annotations: [
                         {name: "Others", offset: {left:0, top: 5}}
                     ]
                 },
                                     { 
                     name: "Ireland",
-                    color: "#062D41",
+                    color: "#58768D",
                     annotations: [
                         {name: "Ireland", offset: {left:0, top: 5}}
                     ]
                 },
                 { 
                     name: "Greece",
-                    color: "#4A2386",
+                    color: "#B4743C",
                     annotations: [
-                        {name: "Greece", offset: {left: 0, top: -5}} 
+                        {name: "Greece", offset: {left: 0, top: -7}} 
                     ]
                 },
                 { 
                     name: "India",
-                    color: "#8A61D6",
+                    color: "#6C60A0",
                     annotations: [
-                        {name: "India", offset: {left:0, top: 5}}
+                        {name: "India", offset: {left:0, top: -20}}
                     ]
                 },
 
                 { 
                     name: "Korea",
-                    color: "#57534E",
+                    color: "#A45A58",
                     annotations: [
-                        {name: "Korea", offset: {left:0, top: 5}}
+                        {name: "Korea", offset: {left:0, top: 2}}
                     ]
                 },
 

@@ -27,7 +27,11 @@ export abstract class Character {
         }
 
     buildAnnotations(defs:AnnotationDefinition[]):Annotation[] {
-        return defs.map(d => new Annotation(d)) 
+        if(defs) {
+            return defs.map(d => new Annotation(d)) 
+        } else {
+            return [] 
+        }
     }
 
 
@@ -48,6 +52,13 @@ export abstract class Character {
 
 
     get label() {
+        if(this.annotations.length < 1) {
+            return {
+                name: "",
+                x: 0,
+                y: 0,
+            } 
+        }
         let annot = this.annotations[0] 
         return {
             name: annot.name,

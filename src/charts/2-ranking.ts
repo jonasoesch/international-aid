@@ -163,7 +163,7 @@ export function ranking():Promise<any> {
                     name: "United Arab Emirates",
                     color: "#D66F61",
                     annotations: [
-                        {name: "United Arab Emirates"}
+                        {name: "Emirates"}
                     ]
                 },
                 { 
