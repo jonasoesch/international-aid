@@ -132,7 +132,7 @@ Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         {from: 1000, to:1100, draw:newKidsWhoAreThey1},
         {from: 1100, to:1150, draw:newKidsWhoAreThey2},
         {from: 1150, to:1300, draw:newKidsWhoAreThey3},
-        //{from: 1200, to:1500, draw:whoAreThey},
+        {from: 1300, to:1800, draw:whoAreThey},
     ]
     let d = new Director(steps)
          

@@ -85,11 +85,10 @@ export class Director {
      * currently be visible. Hides all the other.
      **/
     public drawAll(offset:number) {
+    this.storyboard.forEach( (step) => this.hide(step.draw) )
     this.storyboard.forEach( (step) => {
             if (offset > step.from && offset <= step.to) {
                 this.draw(step.draw, this.howFar(step, offset)) 
-            } else {
-                this.hide(step.draw) 
             }
         })
     }
