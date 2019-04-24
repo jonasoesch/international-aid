@@ -21,10 +21,7 @@ body {
 }
 
 
-
-
 .tick line {
-    display: none;
     stroke: #57534E;
     width: 100%;
 }
