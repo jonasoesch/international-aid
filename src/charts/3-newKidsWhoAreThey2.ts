@@ -11,7 +11,6 @@ export function newKidsWhoAreThey2():Promise<any> {
                 donations: 100
             }})
 
-        console.log(dd)
 
         let a = {
             name: "newKidsWhoAreThey2",

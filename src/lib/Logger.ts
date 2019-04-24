@@ -48,6 +48,7 @@ export class Logger {
 
     /**
      * Generate a (hopefully) unique ID.
+     * TODO: This should rather be an ID recieved from Qualtrics
      **/
     private uuid() {
         return Date.now() + "-" + Math.random().toString(36).replace(";", "a").replace("=", "b") 
@@ -55,7 +56,7 @@ export class Logger {
 
 
     /**
-     * Gets the value for a cooke. Returns `null` if the name
+     * Gets the value for a cookie. Returns `null` if the name
      * does not exist.
      **/
     private getCookie(name:string):(string | null) {
@@ -98,7 +99,6 @@ export class Logger {
     }
 
 
-    // TODO: Implement
     public error(message:string) {
         this.messages.push({
             timestamp: Date.now(),

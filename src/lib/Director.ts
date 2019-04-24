@@ -68,6 +68,7 @@ export class Director {
 
         // only execute if the last execution has
         // been more than x ms ago
+        // TODO: Does this work?
         if(difference>10) {
             this.timer = t
             this.drawAll(scroll)
@@ -76,7 +77,7 @@ export class Director {
 
     /**
      * Draws every drawable in the storyboard that should
-     * currently be visible. Hides all the other.
+     * currently be visible. Hides all the others.
      **/
     public drawAll(offset:number) {
     this.storyboard.forEach( (step) => this.hide(step.draw) )
@@ -105,13 +106,13 @@ export class Director {
      * the reader is.
      **/
     protected howFar(step:Step, offset:number):number {
-        let total = step.to-step.from
-        let position = offset - step.from
+        let stepSize = step.to-step.from
+        let intoStep = offset - step.from
 
-        if(total < 0) {throw new Error("End is before start")}
-        if(position < 0) {throw new Error("Position is not between end and start")}
+        if(stepSize < 0) {throw new Error("End is before start")}
+        if(intoStep < 0) {throw new Error("Position is not between end and start")}
 
-        return this.easing(position/total)
+        return this.easing(intoStep/stepSize)
     }
 
     /**
@@ -121,8 +122,6 @@ export class Director {
     easing(howFar:number){
         return d3.easePolyInOut(howFar) 
     }
-
-
 
    private save() {
         this.logger.send()
@@ -134,22 +133,22 @@ export class Director {
     }
 
     /**
-     * Checks if a Drawable is a MorphingGraph.
+     * Checks if a Drawable is a MorphingChart or a FadingChart.
      * If yes, calls `atPoint()` and passes the relative position (calculated in
      * the `howFar()`-method). Then it draws the `Drawable`.
      **/
-    private draw(graph:Drawable, howFar:number) {
-            //this.logger.animation(graph.name, howFar)
-        if(graph instanceof MorphingChart || graph instanceof FadingChart) {
-            graph.atPosition(howFar).draw() 
+    private draw(chart:Drawable, howFar:number) {
+        this.logger.animation(chart.name, howFar)
+        if(chart instanceof MorphingChart || chart instanceof FadingChart) {
+            chart.atPosition(howFar).draw() 
         } else {
-            graph.draw() 
+            chart.draw() 
         }
 
     }
 
-    hide(graph:Drawable) {
-        graph.hide() 
+    hide(chart:Drawable) {
+        chart.hide() 
     }
 
 
@@ -174,5 +173,3 @@ interface Step {
     to:number
     draw:Drawable
 }
-
-
