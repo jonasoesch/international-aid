@@ -2,7 +2,7 @@ import * as d3 from "d3"
 import {SlopeChart} from "../lib/SlopeChart"
 
 export function rise():Promise<any> {
-    return d3.csv("data/1-rise.csv").then((data) => {
+    return d3.csv("../data/1-rise.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {

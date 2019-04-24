@@ -12,7 +12,10 @@ function devProd(development, production) {
 }
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: {
+        demo:  './src/index.ts',
+        SAA:  './src/experiments/SAA.ts'
+    },
     devtool: devProd('inline-source-map', false),
     mode: devProd("development", "production"),
     // Typescript
@@ -38,7 +41,7 @@ module.exports = {
         extensions: [ '.ts', '.js' ]
     },
     output: {
-        filename: 'main.js',
+        filename: '[name]/main.js',
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {

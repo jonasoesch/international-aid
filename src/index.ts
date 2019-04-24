@@ -135,5 +135,6 @@ Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         {from: 1300, to:1800, draw:whoAreThey},
     ]
     let d = new Director(steps)
+    rise.draw()
          
 })

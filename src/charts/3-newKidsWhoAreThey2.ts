@@ -2,7 +2,7 @@ import * as d3 from "d3"
 import {StackedTimeseriesChart} from "../lib/StackedTimeseriesChart"
 
 export function newKidsWhoAreThey2():Promise<any> {
-    return d3.csv("data/3-newKids.csv").then((data) => {
+    return d3.csv("../data/3-newKids.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {

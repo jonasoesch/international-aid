@@ -5,7 +5,7 @@ import {SlopeChart} from "../lib/SlopeChart"
 
 
 export function ranking():Promise<any> {
-    return d3.csv("data/2-ranking.csv").then((data) => {
+    return d3.csv("../data/2-ranking.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {

@@ -3,7 +3,7 @@ import {SlopeChart} from "../lib/SlopeChart"
 
 
 export function precisely():Promise<any> {
-    return d3.csv("data/5-howMuch.csv").then((data) => {
+    return d3.csv("../data/5-howMuch.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {

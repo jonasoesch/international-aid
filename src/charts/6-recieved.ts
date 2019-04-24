@@ -3,7 +3,7 @@ import {SlopeChart} from "../lib/SlopeChart"
 
 
 export function recieved():Promise<any> {
-    return d3.csv("data/6-recieved.csv").then((data) => {
+    return d3.csv("../data/6-recieved.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {

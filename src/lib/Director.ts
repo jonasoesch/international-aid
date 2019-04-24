@@ -15,29 +15,34 @@ export class Director {
 
     constructor(stepDefs:StepDefinition[]) {
        this.lastScrollTop = window.scrollY;
-       //this.logger = new Logger()
+       this.logger = new Logger()
         
         this.storyboard = this.buildSteps(stepDefs)
         
+        // Checks if 
         if (window.requestAnimationFrame) {
             try {
                 this.loop();
             } catch(e) {
-                this.logger
+                this.logger.error("An unspecified error has occured")
             }
         }
 
         // Send log every 5 seconds
-        // TODO: Decativate logger for now
-        //setInterval(() => this.save(), 5 * 1000);
+        setInterval(() => this.save(), 5 * 1000);
         //setInterval(() => this.alive(), 20 * 1000)
     }
 
 
-    // It's faster to fire on each `animationFrame` instead of listening to the `onScroll`-event.
+
+    /**
+     * The draw-loop: Redraws the screen if the reader
+     * has scrolled
+     **/
     private loop() {
         var scrollTop = window.scrollY;
         if (this.lastScrollTop === scrollTop) {
+            // It's faster to fire on each `animationFrame` instead of listening to the `onScroll`-event.
             window.requestAnimationFrame(() => this.loop());
             return;
         } else {
@@ -48,17 +53,6 @@ export class Director {
             window.requestAnimationFrame(() => this.loop());
         }
     } 
-
-
-
-    private save() {
-        this.logger.send()
-    }
-
-    private alive() {
-        this.logger.alive()
-        this.logger.send() 
-    }
 
 
 
@@ -128,6 +122,16 @@ export class Director {
         return d3.easePolyInOut(howFar) 
     }
 
+
+
+   private save() {
+        this.logger.send()
+    }
+
+    private alive() {
+        this.logger.alive()
+        this.logger.send() 
+    }
 
     /**
      * Checks if a Drawable is a MorphingGraph.

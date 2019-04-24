@@ -1,7 +1,7 @@
 import * as d3 from "d3"
 import {SlopeChart} from "../lib/SlopeChart"
 
-export function rankingNewKids2():Promise<any> {return d3.csv("data/2-ranking.csv").then((data) => {
+export function rankingNewKids2():Promise<any> {return d3.csv("../data/2-ranking.csv").then((data) => {
         let dd:any = data.map((d, i) => {return {
             donor: d.donor,
             decade: d.decade,

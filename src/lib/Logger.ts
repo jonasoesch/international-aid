@@ -99,7 +99,15 @@ export class Logger {
 
 
     // TODO: Implement
-    public error() {}
+    public error(message:string) {
+        this.messages.push({
+            timestamp: Date.now(),
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight,
+            name: `@error: ${message}`,
+            position: -1,
+        }) 
+    }
 
     private waitMore() {
         this.waitingForActionSince = this.waitingForActionSince + 20
