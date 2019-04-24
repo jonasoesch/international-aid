@@ -16,15 +16,15 @@ export function whoAreThey():Promise<any> {
             name: "whoAreThey",
             data: dd,
             annotations: [{
-                name: "Blabla"
+                name: "The importance of countries in this group of new donors has changed over time"
             }],
             axes: [
                 {
                     name: "y",
                     field: "ratio",
-                    domain: [0, 1],
+                    domain: [0, 100],
                     annotations: [
-                    {name: "Ratio"}
+                    {name: "Importance of a country's contribution in %", anchor: "start", offset: {top: -75, left: 20}}
                     ]
                 },
                 {

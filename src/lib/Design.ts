@@ -8,7 +8,7 @@ export class Design {
 
     margin = {
         left: 80,
-        top: 80,
+        top: 140,
         right: 80,
         bottom: 80
     }

@@ -21,7 +21,7 @@ export function ranking():Promise<any> {
             name: "ranking",
             data: dd,
             annotations: [{
-                name: "Changes in the major donors of international aid since the between the seventies and the noughties",
+                name: "The importance of some of these major donors has changed between the seventies and the noughties",
             offset: {left: -20}}],
             axes: [
                 {
@@ -30,7 +30,8 @@ export function ranking():Promise<any> {
                     domain: [17, 1],
                     ticks: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
                     annotations: [
-                    {name: "70s", offset: {left: 15}}
+                    {name: "1975–80", offset: {left: -25}},
+                    {name: "Rank", anchor: "start", offset: {left: -25, top: -70}}
                     ]
                 },
                 {
@@ -38,7 +39,7 @@ export function ranking():Promise<any> {
                     field: "rank",
                     domain: [17, 1],
                     annotations: [
-                    {name: "00s", offset: {left: -15}}
+                    {name: "2000–05", offset: {left: -35}}
                     ]
                 },
                 {

@@ -66,6 +66,7 @@ class SlopeAxis extends Axis {
             .append("text")
             .attr("class", "axis-label")
             .text(annotation.name)
+            .attr("text-anchor", "start")
             .attr("x", annotation.offset.left)
             .attr("y", annotation.offset.top + this.height * this.annotationPosition(annotation.anchor) + 40)
 
@@ -110,6 +111,7 @@ class SlopeCharacter extends Character {
             .append("text")
             .text(annotation.name)
             .attr("fill", this.color)
+            .attr("text-anchor", "start")
             //.attr("fill", this.lightOrDarkBg(this.color, "#fff", "#000"))
             .attr("y", this.annotationY(annotation))
             .attr("x",this.annotationX(annotation))

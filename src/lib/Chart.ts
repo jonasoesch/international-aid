@@ -238,13 +238,13 @@ export abstract class Chart implements Drawable {
                     +annotation.offset.left},${this.design.margin.top /3
                     +annotation.offset.top})`)
             .append("text")
-            .style("font-size", `${this.design.font.size*1.2}px`)
+            .style("font-size", `${this.design.font.size*1.4}px`)
 
             text.selectAll("tspan")
                 .data(this.wordWrap(annotation.name, 11))
                 .enter()
                 .append("tspan")
-                .attr("y", (d, i) => i*20 )
+                .attr("y", (d, i) => i*this.design.font.size * 2 )
                 .attr("x", 0)
                 .text( d => d )
     }

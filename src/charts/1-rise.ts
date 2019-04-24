@@ -26,7 +26,8 @@ export function rise():Promise<any> {
                     domain: [0, 30],
                     ticks: [5,10,15,20,25,30],
                     annotations: [
-                        {name: "70s", anchor: "end", offset: {left: 15}}
+                        {name: "1975–80", anchor: "end", offset: {left: -25}},
+                        {name: "Donations in billion USD per year", anchor: "start", offset: {top: -70, left: -25}}
                     ]
                 },
                 {
@@ -34,7 +35,7 @@ export function rise():Promise<any> {
                     field: "amount",
                     domain: [0, 300],
                     annotations: [
-                    {name: "00s", anchor: "end", offset: {left: -10}}
+                    {name: "2000–05", anchor: "end", offset: {left: -35}}
                     ]
                 },
                 {
