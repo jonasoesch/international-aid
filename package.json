@@ -1,5 +1,5 @@
 {
-    "name": "Mortality",
+    "name": "Aid",
     "devDependencies": {
         "@types/d3": "^5.0.0",
         "@types/es6-promise": "^3.3.0",
