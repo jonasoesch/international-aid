@@ -14,7 +14,9 @@ function devProd(development, production) {
 module.exports = {
     entry: {
         demo:  './src/index.ts',
-        SAA:  './src/experiments/SAA.ts'
+        SAA:  './src/experiments/SAA.ts',
+        SSA:  './src/experiments/SSA.ts',
+        JAA:  './src/experiments/JAA.ts',
     },
     devtool: devProd('inline-source-map', false),
     mode: devProd("development", "production"),
