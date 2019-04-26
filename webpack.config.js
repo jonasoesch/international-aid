@@ -15,8 +15,11 @@ module.exports = {
     entry: {
         demo:  './src/index.ts',
         SAA:  './src/experiments/SAA.ts',
+        SAB:  './src/experiments/SAB.ts',
+        SAC:  './src/experiments/SAC.ts',
         SSA:  './src/experiments/SSA.ts',
         JAA:  './src/experiments/JAA.ts',
+        JAB:  './src/experiments/JAB.ts',
     },
     devtool: devProd('inline-source-map', false),
     mode: devProd("development", "production"),

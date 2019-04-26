@@ -10,7 +10,7 @@ import {repaying} from "./charts/7-repaying"
 import {MorphingChartDefinition, StepDefinition} from "./lib/Definitions"
 import {MorphingChart} from "./lib/MorphingChart"
 import {FadingChart} from "./lib/FadingChart"
-import {Director} from "./lib/Director"
+import {SuperposedDirector} from "./lib/Director"
 
 Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey2(), whoAreThey()
 ]).then(charts => {
@@ -134,7 +134,6 @@ Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         {from: 1150, to:1300, draw:newKidsWhoAreThey3},
         {from: 1300, to:1800, draw:whoAreThey},
     ]
-    let d = new Director(steps)
-    rise.draw()
+    new SuperposedDirector(steps)
          
 })

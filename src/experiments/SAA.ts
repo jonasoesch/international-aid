@@ -1,7 +1,7 @@
 import {rise} from "../charts/1-rise"
 import {ranking} from "../charts/2-ranking"
 import {MorphingChart} from "../lib/MorphingChart"
-import {Director} from "../lib/Director"
+import {SuperposedDirector} from "../lib/Director"
 
 Promise.all([ rise(), ranking()
 ]).then(charts => {
@@ -45,7 +45,6 @@ Promise.all([ rise(), ranking()
         {from: 100, to:300, draw:riseRanking},
         {from: 300, to:600, draw:ranking},
     ]
-    let d = new Director(steps)
-    rise.draw()
+    new SuperposedDirector(steps)
          
 })

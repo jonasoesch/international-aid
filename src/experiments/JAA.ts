@@ -45,7 +45,5 @@ Promise.all([ rise(), ranking()
         {from: 100, to:300, draw:riseRanking},
         {from: 300, to:600, draw:ranking},
     ]
-    let d = new JuxtaposedDirector(steps)
-    rise.draw()
-         
+    new JuxtaposedDirector(steps)
 })
