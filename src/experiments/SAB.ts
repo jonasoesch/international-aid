@@ -70,9 +70,9 @@ Promise.all([ ranking(), rankingNewKids2(), newKids()
 
     let steps:StepDefinition[] = [
         {from: -300, to:300, draw:ranking},
-        {from: 300, to:400, draw:rankingNewKids1},
-        {from: 400, to:500, draw:rankingNewKids3},
-        {from: 500, to:1000, draw:newKids},
+        {from: 300, to:600, draw:rankingNewKids1},
+        {from: 600, to:1000, draw:rankingNewKids3},
+        {from: 1000, to:6000, draw:newKids},
     ]
     new SuperposedDirector(steps)
          
