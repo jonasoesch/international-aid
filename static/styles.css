@@ -9,12 +9,12 @@ body {
 }
 
 
-.Graph {
+.Chart {
     width: 800px;
     height: 900px;
 } 
 
-.Graph {
+.Chart {
     position: fixed;
     top: 20px;
     left: 20px;
