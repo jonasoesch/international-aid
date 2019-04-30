@@ -51,7 +51,7 @@ export function newKids():Promise<any> {
                     },
                     {
                         name: "new",
-                        color: "#D8563D",
+                        color: "#E56868",
                         annotations: [
                             {name: "New donors" }
                         ]

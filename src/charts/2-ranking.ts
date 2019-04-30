@@ -57,21 +57,21 @@ export function ranking():Promise<any> {
                 characters: [
                 { 
                     name: "United States",
-                    color: "#58768D",
+                    color: "#6C6C6C",
                     annotations: [
                         {name: "USA"} 
                     ]
                 },
                 { 
                     name: "Japan",
-                    color: "#58768D",
+                    color: "#6C6C6C",
                     annotations: [
                         {name: "Japan"}
                     ]
                 },
                 { 
                     name: "Germany",
-                    color: "#58768D",
+                    color: "#6C6C6C",
                     annotations: [
                         {name: "Germany"}
                     ]

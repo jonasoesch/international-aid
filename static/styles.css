@@ -25,6 +25,11 @@ body {
 }
 
 
+*[id ^="character"] text {
+    text-shadow: 0 0 20px #fff;
+}
+
+
 .tick line {
     stroke: #57534E;
     width: 100%;
