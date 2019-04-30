@@ -43,21 +43,21 @@ export function whoAreThey():Promise<any> {
                 characters: [
                   { 
                     name: "Liechtenstein",
-                    color: "#DD9B62",
+                    color: "#F6A45D",
                     annotations: [
                         {name: "Liechtenstein", offset: {left:0, top: -8}}
                     ]
                 },
                 { 
                     name: "Portugal",
-                    color: "#D66F61",
+                    color: "#F27F47",
                     annotations: [
                         {name: "Portugal", offset: {left:0, top: -5}}
                     ]
                 },
                 { 
                     name: "Spain",
-                    color: "#7995AB",
+                    color: "#D8563D",
                     annotations: [
                         {name: "Spain", offset: {left:0, top: 5}}
                     ]
@@ -65,35 +65,35 @@ export function whoAreThey():Promise<any> {
 
                                     { 
                     name: "Taiwan",
-                    color: "#C093C7",
+                    color: "#A6423B",
                     annotations: [
                         {name: "Taiwan", offset: {left:0, top: -8}}
                     ]
                 },
                                                         { 
                     name: "Others",
-                    color: "#57534E",
+                    color: "#B08A78",
                     annotations: [
                         {name: "Others", offset: {left:0, top: 5}}
                     ]
                 },
                                     { 
                     name: "Ireland",
-                    color: "#58768D",
+                    color: "#8F7F7D",
                     annotations: [
                         {name: "Ireland", offset: {left:0, top: 5}}
                     ]
                 },
                 { 
                     name: "Greece",
-                    color: "#B4743C",
+                    color: "#C48A94",
                     annotations: [
                         {name: "Greece", offset: {left: 0, top: -7}} 
                     ]
                 },
                 { 
                     name: "India",
-                    color: "#6C60A0",
+                    color: "#B54763",
                     annotations: [
                         {name: "India", offset: {left:0, top: -20}}
                     ]
@@ -101,7 +101,7 @@ export function whoAreThey():Promise<any> {
 
                 { 
                     name: "Korea",
-                    color: "#A45A58",
+                    color: "#922340",
                     annotations: [
                         {name: "Korea", offset: {left:0, top: 2}}
                     ]

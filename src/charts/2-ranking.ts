@@ -57,119 +57,119 @@ export function ranking():Promise<any> {
                 characters: [
                 { 
                     name: "United States",
-                    color: "#57534E",
+                    color: "#58768D",
                     annotations: [
                         {name: "USA"} 
                     ]
                 },
                 { 
                     name: "Japan",
-                    color: "#57534E",
+                    color: "#58768D",
                     annotations: [
                         {name: "Japan"}
                     ]
                 },
                 { 
                     name: "Germany",
-                    color: "#57534E",
+                    color: "#58768D",
                     annotations: [
                         {name: "Germany"}
                     ]
                 },
                 { 
                     name: "France",
-                    color: "#58768D",
+                    color: "#1D7DC9",
                     annotations: [
                         {name: "France"}
                     ],
                 },
                 { 
                     name: "United Kingdom",
-                    color: "#57534E",
+                    color: "#174365",
                     annotations: [
                         {name: "UK"}
                     ],
                 },
                 { 
                     name: "Netherlands",
-                    color: "#58768D",
+                    color: "#1D7DC9",
                     annotations: [
                         {name: "Netherlands"}
                     ]
                 },
                 { 
                     name: "Australia",
-                    color: "#57534E",
+                    color: "#174365",
                     annotations: [
                         {name: "Australia"}
                     ]
                 },
                 { 
                     name: "Belgium",
-                    color: "#57534E",
+                    color: "#1D7DC9",
                     annotations: [
                         {name: "Belgium"}
                     ]
                 },
                 { 
                     name: "Canada",
-                    color: "#57534E",
+                    color: "#174365",
                     annotations: [
                         {name: "Canada"}
                     ]
                 },
                 { 
                     name: "Denmark",
-                    color: "#58768D",
+                    color: "#1D7DC9",
                     annotations: [
                         {name: "Denmark"}
                     ]
                 },
                 { 
                     name: "Kuwait",
-                    color: "#D66F61",
+                    color: "#174365",
                     annotations: [
                         {name: "Kuwait"}
                     ]
                 },
                 { 
                     name: "Norway",
-                    color: "#58768D",
+                    color: "#1D7DC9",
                     annotations: [
                         {name: "Norway"}
                     ]
                 },
                 { 
                     name: "Saudi Arabia",
-                    color: "#D66F61",
+                    color: "#174365",
                     annotations: [
                         {name: "Saudi Arabia"}
                     ]
                 },
                 { 
                     name: "Sweden",
-                    color: "#57534E",
+                    color: "#174365",
                     annotations: [
                         {name: "Sweden"}
                     ]
                 },
                 { 
                     name: "Switzerland",
-                    color: "#57534E",
+                    color: "#1D7DC9",
                     annotations: [
                         {name: "Switzerland"}
                     ]
                 },
                 { 
                     name: "United Arab Emirates",
-                    color: "#D66F61",
+                    color: "#174365",
                     annotations: [
                         {name: "Emirates"}
                     ]
                 },
                 { 
                     name: "Others",
-                    color: "#58768D",
+                    color: "#1D7DC9",
                     annotations: [
                         {name: "All others"}
                     ]

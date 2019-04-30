@@ -36,7 +36,7 @@ export function newKidsWhoAreThey2():Promise<any> {
                     y: "y",
                     x: "x"
                 },
-                characters: [{ name: "new", color: "#58768D", annotations: [{name: "New donors", offset: {top: 200}}]}]
+                characters: [{ name: "new", color: "#D8563D", annotations: [{name: "New donors", offset: {top: 200}}]}]
             }
         }
 

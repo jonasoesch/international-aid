@@ -44,14 +44,14 @@ export function newKids():Promise<any> {
                 characters: [ 
                     {
                         name: "old",
-                        color: "#57534E",
+                        color: "#58768D",
                         annotations: [
                             {name: "Old donors"}
                         ]
                     },
                     {
                         name: "new",
-                        color: "#58768D",
+                        color: "#D8563D",
                         annotations: [
                             {name: "New donors" }
                         ]
