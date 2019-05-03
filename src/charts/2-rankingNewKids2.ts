@@ -22,7 +22,7 @@ export function rankingNewKids2():Promise<any> {return d3.csv("../data/1-rise.cs
                 {
                     name: "y",
                     field: "amount",
-                    domain: [0, 120],},
+                    domain: [0, 140],},
            
                 {
                     name: "x",

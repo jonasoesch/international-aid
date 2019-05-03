@@ -54,6 +54,7 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         name: "rankingNewKids1",
         from: rise,
         to: rankingNewKids2,
+        axes: [{from: "from", to: "y"}],
         characters: [
             {from: "United States", to: "United States"},
             {from: "Japan", to: "Japan"},
@@ -83,6 +84,7 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         name: "rankingNewKids3",
         from: rankingNewKids2,
         to: newKids, //rankingNewKids4,
+        axes: [{from: "y", to: "y"}],
         characters: [
             {from: "United States", to: "old"},
             {from: "Japan", to: "old"},
@@ -109,6 +111,7 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         name: "newKidsWhoAreThey1",
         from: newKids,
         to: newKidsWhoAreThey2,
+        axes: [{from: "y", to: "y"}],
         characters: [
             {from: "new", to: "all"},
         ]
