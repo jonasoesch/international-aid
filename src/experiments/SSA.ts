@@ -10,8 +10,8 @@ Promise.all([ rise(), ranking()
     let ranking = charts[1]
 
     let steps = [
-        {from: -200, to:300, draw:rise},
-        {from: 300, to:6000, draw:ranking},
+        {from: -200, to:300, draw:ranking},
+        {from: 300, to:6000, draw:rise},
     ]
     new SuperposedDirector(steps)
 })

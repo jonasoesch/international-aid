@@ -1,6 +1,6 @@
 import {rise} from "./charts/1-rise"
 import {ranking} from "./charts/2-ranking"
-import {rankingNewKids2} from "./charts/2-rankingNewKids2"
+import {riseNewKids2} from "./charts/2-riseNewKids2"
 import {newKids} from "./charts/3-newKids"
 import {newKidsWhoAreThey2} from "./charts/3-newKidsWhoAreThey2"
 import {whoAreThey} from "./charts/4-whoAreThey"
@@ -12,12 +12,12 @@ import {MorphingChart} from "./lib/MorphingChart"
 import {FadingChart} from "./lib/FadingChart"
 import {SuperposedDirector} from "./lib/Director"
 
-Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey2(), whoAreThey()
+Promise.all([ ranking(), rise(), riseNewKids2(), newKids(), newKidsWhoAreThey2(), whoAreThey()
 ]).then(charts => {
 
     let ranking = charts[0]
     let rise = charts[1]
-    let rankingNewKids2 = charts[2]
+    let riseNewKids2 = charts[2]
     let newKids = charts[3]
     let newKidsWhoAreThey2 = charts[4]
     let whoAreThey = charts[5]
@@ -50,10 +50,10 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
     })
 
 
-        let rankingNewKids1 = new MorphingChart({
-        name: "rankingNewKids1",
+    let riseNewKids1 = new MorphingChart({
+        name: "riseNewKids1",
         from: rise,
-        to: rankingNewKids2,
+        to: riseNewKids2,
         axes: [{from: "from", to: "y"}],
         characters: [
             {from: "United States", to: "United States"},
@@ -78,11 +78,9 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
     })
 
 
-
-
-        let rankingNewKids3 = new MorphingChart({
-        name: "rankingNewKids3",
-        from: rankingNewKids2,
+    let riseNewKids3 = new MorphingChart({
+        name: "riseNewKids3",
+        from: riseNewKids2,
         to: newKids, //rankingNewKids4,
         axes: [{from: "y", to: "y"}],
         characters: [
@@ -107,7 +105,7 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         ]
     })
 
-        let newKidsWhoAreThey1 = new MorphingChart({
+    let newKidsWhoAreThey1 = new MorphingChart({
         name: "newKidsWhoAreThey1",
         from: newKids,
         to: newKidsWhoAreThey2,
@@ -117,11 +115,11 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         ]
     })
 
-        let newKidsWhoAreThey3 = new FadingChart({
+    let newKidsWhoAreThey3 = new FadingChart({
         name: "newKidsWhoAreThey3",
         from: newKidsWhoAreThey2,
         to: whoAreThey,
-       })
+    })
 
 
 
@@ -129,14 +127,15 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         {from: -200, to:100, draw:ranking},
         {from: 100, to:300, draw:rankingRise},
         {from: 300, to:600, draw:rise},
-        {from: 600, to:700, draw:rankingNewKids1},
-        {from: 700, to:800, draw:rankingNewKids3},
-        {from: 800, to:1000, draw:newKids},
+        {from: 600, to:700, draw:riseNewKids1},
+        {from: 700, to:800, draw:riseNewKids2},
+        {from: 700, to:900, draw:riseNewKids3},
+        {from: 900, to:1000, draw:newKids},
         {from: 1000, to:1100, draw:newKidsWhoAreThey1},
         {from: 1100, to:1150, draw:newKidsWhoAreThey2},
         {from: 1150, to:1300, draw:newKidsWhoAreThey3},
         {from: 1300, to:1800, draw:whoAreThey},
     ]
     new SuperposedDirector(steps)
-         
+
 })

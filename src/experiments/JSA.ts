@@ -9,8 +9,8 @@ Promise.all([ rise(), ranking()]).then(charts => {
     let ranking = charts[1]
 
     let steps = [
-        {from: -200, to:9000, draw:rise},
         {from: -200, to:9000, draw:ranking},
+        {from: -200, to:9000, draw:rise},
     ]
     new JuxtaposedDirector(steps)
 })

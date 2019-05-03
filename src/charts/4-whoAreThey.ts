@@ -41,13 +41,6 @@ export function whoAreThey():Promise<any> {
                     x: "x"
                 },
                 characters: [
-                  { 
-                    name: "Liechtenstein",
-                    color: "#EDAC74",
-                    annotations: [
-                        {name: "Liechtenstein", offset: {left:0, top: -8}}
-                    ]
-                },
                 { 
                     name: "Portugal",
                     color: "#F68F5C",

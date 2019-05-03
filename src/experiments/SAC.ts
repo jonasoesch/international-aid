@@ -13,12 +13,13 @@ Promise.all([ newKids(), newKidsWhoAreThey2(), whoAreThey()]).then(charts => {
     let whoAreThey = charts[2]
 
 
-    let newKidsWhoAreThey1 = new MorphingChart({
+  let newKidsWhoAreThey1 = new MorphingChart({
         name: "newKidsWhoAreThey1",
         from: newKids,
         to: newKidsWhoAreThey2,
+        axes: [{from: "y", to: "y"}],
         characters: [
-            {from: "new", to: "new"},
+            {from: "new", to: "all"},
         ]
     })
 
@@ -27,7 +28,6 @@ Promise.all([ newKids(), newKidsWhoAreThey2(), whoAreThey()]).then(charts => {
         from: newKidsWhoAreThey2,
         to: whoAreThey,
     })
-
 
 
     let steps:StepDefinition[] = [

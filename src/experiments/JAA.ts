@@ -10,10 +10,10 @@ Promise.all([ rise(), ranking()
     let ranking = charts[1]
 
 
-    let riseRanking = new MorphingChart({
-        name: "riseRanking",
-        from: rise,
-        to: ranking,
+    let rankingRise = new MorphingChart({
+        name: "rankingRise",
+        from: ranking,
+        to: rise,
         characters: [
             {from: "United States", to: "United States"},
             {from: "Japan", to: "Japan"},
@@ -41,9 +41,9 @@ Promise.all([ rise(), ranking()
 
 
     let steps = [
-        {from: -200, to:100, draw:rise},
-        {from: 100, to:300, draw:riseRanking},
-        {from: 300, to:600, draw:ranking},
+        {from: -200, to:100, draw:ranking},
+        {from: 100, to:300, draw:rankingRise},
+        {from: 300, to:600, draw:rise},
     ]
     new JuxtaposedDirector(steps)
 })

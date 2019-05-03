@@ -1,7 +1,7 @@
 import * as d3 from "d3"
 import {StackedTimeseriesChart} from "../lib/StackedTimeseriesChart"
 
-export function rankingNewKids2():Promise<any> {return d3.csv("../data/1-rise.csv").then((data) => {
+export function riseNewKids2():Promise<any> {return d3.csv("../data/1-rise.csv").then((data) => {
         let dd:any = data.map((d, i) => {return {
             donor: d.donor,
             decade: parseDate(d.decade),
@@ -16,7 +16,7 @@ export function rankingNewKids2():Promise<any> {return d3.csv("../data/1-rise.cs
 
 
         let a = {
-            name: "rankingNewKids2",
+            name: "riseNewKids2",
             data: dd,
             axes: [
                 {

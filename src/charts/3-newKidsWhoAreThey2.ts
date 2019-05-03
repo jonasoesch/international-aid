@@ -20,13 +20,14 @@ export function newKidsWhoAreThey2():Promise<any> {
                     name: "y",
                     field: "amount",
                     domain: [0,12],
-                    ticks: new Array()
+                    annotations: [
+                        {name: "Donations in billion USD", anchor: "start", offset: {top: -75, left: 20}}
+                    ]
                 },
                 {
                     name: "x",
                     field: "year",
                     domain: [Date.parse("1981-01-01"), Date.parse("2013-01-01")],
-                    ticks: new Array(),
                 }
             ],
             cast:

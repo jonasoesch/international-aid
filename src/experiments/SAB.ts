@@ -1,22 +1,22 @@
-import {ranking} from "../charts/2-ranking"
-import {rankingNewKids2} from "../charts/2-rankingNewKids2"
+import {rise} from "../charts/1-rise"
+import {riseNewKids2} from "../charts/2-riseNewKids2"
 import {newKids} from "../charts/3-newKids"
 import {MorphingChartDefinition, StepDefinition} from "../lib/Definitions"
 import {MorphingChart} from "../lib/MorphingChart"
 import {SuperposedDirector} from "../lib/Director"
 
-Promise.all([ ranking(), rankingNewKids2(), newKids()
-]).then(charts => {
+Promise.all([ rise(), riseNewKids2(), newKids()]).then(charts => {
 
-    let ranking = charts[0]
-    let rankingNewKids2 = charts[1]
+    let rise = charts[0]
+    let riseNewKids2 = charts[1]
     let newKids = charts[2]
 
 
-        let rankingNewKids1 = new MorphingChart({
-        name: "rankingNewKids1",
-        from: ranking,
-        to: rankingNewKids2,
+    let riseNewKids1 = new MorphingChart({
+        name: "riseNewKids1",
+        from: rise,
+        to: riseNewKids2,
+        axes: [{from: "from", to: "y"}],
         characters: [
             {from: "United States", to: "United States"},
             {from: "Japan", to: "Japan"},
@@ -40,10 +40,11 @@ Promise.all([ ranking(), rankingNewKids2(), newKids()
     })
 
 
-        let rankingNewKids3 = new MorphingChart({
-        name: "rankingNewKids3",
-        from: rankingNewKids2,
+    let riseNewKids3 = new MorphingChart({
+        name: "riseNewKids3",
+        from: riseNewKids2,
         to: newKids, //rankingNewKids4,
+        axes: [{from: "y", to: "y"}],
         characters: [
             {from: "United States", to: "old"},
             {from: "Japan", to: "old"},
@@ -65,13 +66,13 @@ Promise.all([ ranking(), rankingNewKids2(), newKids()
             {from: "Others", to: "old"},
         ]
     })
-
+      
 
 
     let steps:StepDefinition[] = [
-        {from: -300, to:300, draw:ranking},
-        {from: 300, to:600, draw:rankingNewKids1},
-        {from: 600, to:1000, draw:rankingNewKids3},
+        {from: -300, to:300, draw:rise},
+        {from: 300, to:600, draw:riseNewKids1},
+        {from: 600, to:1000, draw:riseNewKids3},
         {from: 1000, to:6000, draw:newKids},
     ]
     new SuperposedDirector(steps)
