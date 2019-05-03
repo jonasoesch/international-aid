@@ -23,9 +23,9 @@ export function newKids():Promise<any> {
                 {
                     name: "y",
                     field: "donations",
-                    domain: [0,100],
+                    domain: [0,140],
                     annotations: [
-                        {name: "Share of total donations in %", anchor: "start", offset: {top: -80, left: 20}}
+                        {name: "Donations in billion USD", anchor: "start", offset: {top: -80, left: 20}}
                     ]
                 },
                 {

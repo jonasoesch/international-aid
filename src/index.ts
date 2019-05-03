@@ -12,21 +12,21 @@ import {MorphingChart} from "./lib/MorphingChart"
 import {FadingChart} from "./lib/FadingChart"
 import {SuperposedDirector} from "./lib/Director"
 
-Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey2(), whoAreThey()
+Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey2(), whoAreThey()
 ]).then(charts => {
 
-    let rise = charts[0]
-    let ranking = charts[1]
+    let ranking = charts[0]
+    let rise = charts[1]
     let rankingNewKids2 = charts[2]
     let newKids = charts[3]
     let newKidsWhoAreThey2 = charts[4]
     let whoAreThey = charts[5]
 
 
-    let riseRanking = new MorphingChart({
-        name: "riseRanking",
-        from: rise,
-        to: ranking,
+    let rankingRise = new MorphingChart({
+        name: "rankingRise",
+        from: ranking,
+        to: rise,
         characters: [
             {from: "United States", to: "United States"},
             {from: "Japan", to: "Japan"},
@@ -110,7 +110,7 @@ Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey
         from: newKids,
         to: newKidsWhoAreThey2,
         characters: [
-            {from: "new", to: "new"},
+            {from: "new", to: "all"},
         ]
     })
 
@@ -123,9 +123,9 @@ Promise.all([ rise(), ranking(), rankingNewKids2(), newKids(), newKidsWhoAreThey
 
 
     let steps:StepDefinition[] = [
-        {from: -200, to:100, draw:rise},
-        {from: 100, to:300, draw:riseRanking},
-        {from: 300, to:600, draw:ranking},
+        {from: -200, to:100, draw:ranking},
+        {from: 100, to:300, draw:rankingRise},
+        {from: 300, to:600, draw:rise},
         {from: 600, to:700, draw:rankingNewKids1},
         {from: 700, to:800, draw:rankingNewKids3},
         {from: 800, to:1000, draw:newKids},

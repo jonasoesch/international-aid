@@ -8,7 +8,7 @@ export function whoAreThey():Promise<any> {
             return {
             donor: d.donor,
             year: Date.parse(d.year),
-            ratio: parseFloat(d.ratio)
+            amount: parseFloat(d.amount)
         }})
 
         // TODO: Correct defintion
@@ -21,10 +21,10 @@ export function whoAreThey():Promise<any> {
             axes: [
                 {
                     name: "y",
-                    field: "ratio",
-                    domain: [0, 100],
+                    field: "amount",
+                    domain: [0, 12],
                     annotations: [
-                    {name: "Importance of a country's contribution in %", anchor: "start", offset: {top: -75, left: 20}}
+                    {name: "Donations in billion USD", anchor: "start", offset: {top: -75, left: 20}}
                     ]
                 },
                 {

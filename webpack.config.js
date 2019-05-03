@@ -42,7 +42,7 @@ module.exports = {
                 loader: 'string-replace-loader',
                 options: {
                     search: "__API_URL__",
-                    replace: devProd("http://localhost:5000/", "https://www.jonasoesch.ch/mortality/"),
+                    replace: devProd("http://localhost:5000/", "https://www.cs.technik.fhnw.ch/lostintransition/logger/"),
                 }
             }
         ]

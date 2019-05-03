@@ -2,13 +2,13 @@ import * as d3 from "d3"
 import {StackedTimeseriesChart} from "../lib/StackedTimeseriesChart"
 
 export function newKidsWhoAreThey2():Promise<any> {
-    return d3.csv("../data/3-newKids.csv").then((data) => {
+    return d3.csv("../data/4-whoAreThey-contour.csv").then((data) => {
 
         let dd:any = data.map(d => {
             return {
-                group: d.variable,
+                donor: d.donor,
                 year: Date.parse(`${d.year}`),
-                donations: 100
+                amount: parseFloat(d.amount)
             }})
 
 
@@ -18,25 +18,25 @@ export function newKidsWhoAreThey2():Promise<any> {
             axes: [
                 {
                     name: "y",
-                    field: "donations",
-                    domain: [0,100],
+                    field: "amount",
+                    domain: [0,12],
                     ticks: new Array()
                 },
                 {
                     name: "x",
                     field: "year",
-                    domain: [Date.parse("1975-01-01"), Date.parse("2013-01-01")],
+                    domain: [Date.parse("1981-01-01"), Date.parse("2013-01-01")],
                     ticks: new Array(),
                 }
             ],
             cast:
             {
-                field: "group",
+                field: "donor",
                 axes: {
                     y: "y",
                     x: "x"
                 },
-                characters: [{ name: "new", color: "#E56868", annotations: [{name: "New donors", offset: {top: 200}}]}]
+                characters: [{ name: "all", color: "#E56868", annotations: [{name: "New donors", offset: {top: 200}}]}]
             }
         }
 

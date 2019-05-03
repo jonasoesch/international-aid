@@ -20,6 +20,7 @@
     "scripts": {
         "start": "NODE_ENV=development webpack-dev-server",
         "build": "NODE_ENV=production webpack && cp -r static/* dist/",
+        "deploy": "NODE_ENV=production webpack && cp -r static/* dist/ && scp -rp dist/* transition@server1037.cs.technik.fhnw.ch:/home/transition/app/aid/",
         "test": "NODE_ENV=development jest",
         "testWatch": "NODE_ENV=development jest --watch"
     }
