@@ -52,7 +52,7 @@ Promise.all([ ranking(), rise(), rankingNewKids2(), newKids(), newKidsWhoAreThey
 
         let rankingNewKids1 = new MorphingChart({
         name: "rankingNewKids1",
-        from: ranking,
+        from: rise,
         to: rankingNewKids2,
         characters: [
             {from: "United States", to: "United States"},
