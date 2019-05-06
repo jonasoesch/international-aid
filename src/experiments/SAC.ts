@@ -33,8 +33,7 @@ Promise.all([ newKids(), newKidsWhoAreThey2(), whoAreThey()]).then(charts => {
     let steps:StepDefinition[] = [
         {from: -300, to:200, draw:newKids},
         {from: 200, to:600, draw:newKidsWhoAreThey1},
-        {from: 600, to:700, draw:newKidsWhoAreThey2},
-        {from: 700, to:1000, draw:newKidsWhoAreThey3},
+        {from: 600, to:1000, draw:newKidsWhoAreThey3},
         {from: 1000, to:20000, draw:whoAreThey},
     ]
     new SuperposedDirector(steps)
