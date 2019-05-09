@@ -24,7 +24,7 @@ export function whoAreThey():Promise<any> {
                     field: "amount",
                     domain: [0, 12],
                     annotations: [
-                    {name: "Donations in billion USD", anchor: "start", offset: {top: -75, left: 20}}
+                    {name: "Donations in billion USD", anchor: "start", offset: {top: -30, left: -25}}
                     ]
                 },
                 {

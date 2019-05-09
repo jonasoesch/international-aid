@@ -20,9 +20,6 @@ export function newKidsWhoAreThey2():Promise<any> {
                     name: "y",
                     field: "amount",
                     domain: [0,12],
-                    annotations: [
-                        {name: "Donations in billion USD", anchor: "start", offset: {top: -75, left: 20}}
-                    ]
                 },
                 {
                     name: "x",
